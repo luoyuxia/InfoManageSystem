@@ -59,14 +59,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICategoryResposity.cs" />
     <Compile Include="Abstract\IProductsRepository.cs" />
+    <Compile Include="Concrete\EFCategoryRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFReproductRepository.cs" />
-    <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\ProductType.cs" />
-    <Compile Include="Migrations\201705181039138_InitModel.cs" />
-    <Compile Include="Migrations\201705181039138_InitModel.Designer.cs">
-      <DependentUpon>201705181039138_InitModel.cs</DependentUpon>
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Dealers.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\Goods.cs" />
+    <Compile Include="Entities\GoodsStorage.cs" />
+    <Compile Include="Entities\ShipmentItem.cs" />
+    <Compile Include="Entities\ShipmentList.cs" />
+    <Compile Include="Entities\WareHouse.cs" />
+    <Compile Include="Entities\WareHousingItem.cs" />
+    <Compile Include="Entities\WareHousingList.cs" />
+    <Compile Include="Migrations\201705201325581_init database.cs" />
+    <Compile Include="Migrations\201705201325581_init database.Designer.cs">
+      <DependentUpon>201705201325581_init database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,8 +88,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705181039138_InitModel.resx">
-      <DependentUpon>201705181039138_InitModel.cs</DependentUpon>
+    <ProjectReference Include="..\InfoManageSystem.Util\InfoManageSystem.Util.csproj">
+      <Project>{7b0f8c03-7352-433e-9dd2-5e9ef7b087dc}</Project>
+      <Name>InfoManageSystem.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705201325581_init database.resx">
+      <DependentUpon>201705201325581_init database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

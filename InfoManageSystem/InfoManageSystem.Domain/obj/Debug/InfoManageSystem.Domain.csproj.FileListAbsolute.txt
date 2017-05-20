@@ -11,5 +11,8 @@ E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\Info
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\bin\Debug\MySql.Data.dll
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\bin\Debug\MySql.Data.Entity.EF6.dll
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\bin\Debug\zh-Hans\EntityFramework.resources.dll
-E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\obj\Debug\InfoManageSystem.Domain.Migrations.InitModel.resources
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\bin\Debug\InfoManageSystem.Util.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\bin\Debug\InfoManageSystem.Util.pdb
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\obj\Debug\InfoManageSystem.Domain.Migrations.initdatabase.resources
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\obj\Debug\InfoManageSystem.Domain.csproj.GenerateResource.Cache

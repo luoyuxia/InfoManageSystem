@@ -9,6 +9,6 @@ namespace InfoManageSystem.Domain.Abstract
 {
     public interface IProductsRepository
     {
-        IEnumerable<Product> Products { get; }
+    //    IEnumerable<Product> Products { get; }
     }
 }

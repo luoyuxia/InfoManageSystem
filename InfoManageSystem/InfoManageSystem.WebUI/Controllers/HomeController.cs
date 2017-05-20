@@ -18,11 +18,17 @@ namespace InfoManageSystem.WebUI.Controllers
         }
         // GET: Home
         public ActionResult Index()
-        { 
-            return View(productsRepository.Products);
+        {
+            //      return View(productsRepository.Products);
+            return View();
         }
 
         public ActionResult PersonalInfo()
+        {
+            return View();
+        }
+
+        public ActionResult EasyUI()
         {
             return View();
         }

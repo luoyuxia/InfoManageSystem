@@ -82,7 +82,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#">商品类别</a></li>
+                            <li><a id="GoodsType" href="#">商品类别</a></li>
                             <li><a href="#">所有商品</a></li>
                         </ul>
                     </li>
@@ -130,36 +130,52 @@
             </section>
         </aside>
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div id="mainContent" class="content-wrapper">
             <section id="content" class="content">
                 <!-- Your Page Content Here -->
+                <div class="row" style="margin-top:-10px;">
+                    <ul class="nav nav-tabs" role="tablist" style="font-size:1.2em;">
+                    </ul>
+                    <div id="tabContent" class="tab-content" style="width:100%; height:100%">
+                    </div>
+                </div>
             </section>
-        </div>
-
+        </div> 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
-    <script src="~/Content/js/jquery-2.2.3.min.js"></script>
-    <script src="~/Content/js/bootstrap.min.js"></script>
-    <script src="~/Content/js/jquery.slimscroll.min.js"></script>
-    <script src="~/Content/js/fastclick.min.js"></script>
-    <script src="~/Content/js/app.min.js"></script>
-    <script src="~/Content/js/demo.js"></script>
     <script type="text/javascript">
         $(".sidebar-menu li").click(function () {
             $(".sidebar-menu li").removeClass("active");
             $(this).addClass("active");
         });
-        $("#test").click(function () {
-            $.ajax({
-                type: "GET",
-                url: "/Home/PersonalInfo",
-                success: function (html) {
-                    $("#content").html(html);
-                }
-            });
+
+    //    var item = { 'id': '1', 'name': '首页', 'url': '/Home/EasyUI', 'closable': false,'iframe':false };
+   //     closableTab.addTab(item);
+        $("#GoodsType").click(function () {
+            var item = { 'id': 'GoodsType', 'name': '商品类别', 'url': '/GoodsType', 'closable': true ,'iframe':true};
+            changeFramwHeight(closableTab.addTab(item));
         });
+        function changeFramwHeight(frameId)
+        {
+            var ifm = document.getElementById(frameId);
+            if (ifm == undefined)
+                return;
+            ifm.onload = function () {
+                var subWeb = document.frames ? document.frames[frameId].document : ifm.contentDocument;
+                var ele = document.getElementById("mainContent");
+                var mainContentHeight = $("#mainContent").height();
+                if (ifm != null && subWeb != null) {
+                    ifm.height = subWeb.body.scrollHeight;
+                    if(ifm.height < mainContentHeight)
+                    {
+                        ifm.height = mainContentHeight;
+                    }
+               }
+                   
+            };
+        }
     </script>
 </body>

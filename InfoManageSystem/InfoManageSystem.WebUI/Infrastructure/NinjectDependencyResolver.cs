@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using InfoManageSystem.Domain.Abstract;
 using InfoManageSystem.Domain.Entities;
 using InfoManageSystem.Domain.Concrete;
+using InfoManageSystem.Service.IService;
+using InfoManageSystem.Service.Service;
 
 namespace InfoManageSystem.WebUI.Infrastructure
 {
@@ -38,7 +40,10 @@ namespace InfoManageSystem.WebUI.Infrastructure
                    });
                    kernel.Bind<IProductsRepository>().ToConstant(mock.Object);
                    */
+            kernel.Bind<ICategoryResposity>().To<EFCategoryRepository>();
             kernel.Bind<IProductsRepository>().To<EFReproductRepository>();
+            kernel.Bind<ICategoryService>().To<CategoryService>();
+
         }
     }
 }

@@ -1,0 +1,16 @@
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\InfoManageSystem.Service.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\InfoManageSystem.Service.pdb
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\InfoManageSystem.Domain.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\InfoManageSystem.Util.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\Ninject.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\EntityFramework.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\MySql.Data.Entity.EF6.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\MySql.Data.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\InfoManageSystem.Domain.pdb
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\InfoManageSystem.Util.pdb
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\Ninject.xml
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\EntityFramework.xml
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\obj\Debug\InfoManageSystem.Service.csprojResolveAssemblyReference.cache
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\obj\Debug\InfoManageSystem.Service.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\obj\Debug\InfoManageSystem.Service.pdb

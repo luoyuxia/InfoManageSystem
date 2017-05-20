@@ -1,0 +1,5 @@
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\bin\Debug\InfoManageSystem.Util.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\bin\Debug\InfoManageSystem.Util.pdb
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\obj\Debug\InfoManageSystem.Util.csprojResolveAssemblyReference.cache
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\obj\Debug\InfoManageSystem.Util.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\obj\Debug\InfoManageSystem.Util.pdb

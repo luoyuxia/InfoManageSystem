@@ -64,7 +64,7 @@ namespace InfoManageSystem.TestService
         [TestMethod]
         public void TestMethod1()
         {
-            Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
+       /*     Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
             mock.Setup(m => m.Products).Returns(new Product[] {
             }
             );
@@ -73,6 +73,7 @@ namespace InfoManageSystem.TestService
             //
             // TODO:  在此处添加测试逻辑
             //
+            */
         }
     }
 }

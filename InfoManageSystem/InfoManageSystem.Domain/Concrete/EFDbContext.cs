@@ -13,9 +13,18 @@ namespace InfoManageSystem.Domain.Concrete
     {
         public EFDbContext()
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
         }
-        public DbSet<ProductType> ProductType { get; set; }
-        public DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Goods> Goods { get; set; }
+        public virtual DbSet<WareHouse> WareHouse { get; set; }
+        public virtual DbSet<GoodsStorage> GoodsStorage { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<Dealers> Dealers { get; set; }
+        public virtual DbSet<WareHousingList> WareHousingList { get; set; }
+        public virtual DbSet<WareHousingItem> WareHousingItem { get; set; }
+        public virtual DbSet<ShipmentList> ShipmentList { get; set; }
+        public virtual DbSet<ShipmentItem> ShipmentItem { get; set; }
     }
 }
