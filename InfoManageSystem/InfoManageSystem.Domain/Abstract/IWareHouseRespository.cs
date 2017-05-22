@@ -11,6 +11,8 @@ namespace InfoManageSystem.Domain.Abstract
     {
        IQueryable<WareHouse> WareHouse { get; }
 
+        IQueryable<GoodsStorage> GoodsStorage { get; }
+
         WareHouse GetWareHouseById(int wareHouseId);
 
         bool SaveWareHosue(WareHouse wareHouse);

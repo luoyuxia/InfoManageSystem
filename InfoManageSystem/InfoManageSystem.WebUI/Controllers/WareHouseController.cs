@@ -10,11 +10,13 @@ namespace InfoManageSystem.WebUI.Controllers
 {
     public class WareHouseController : Controller
     {
+        private IGoodsService goodService;
         private IWareHouseService wareHouseService;
 
-        public WareHouseController(IWareHouseService wareHouseService)
+        public WareHouseController(IWareHouseService wareHouseService,IGoodsService goodService)
         {
             this.wareHouseService = wareHouseService;
+            this.goodService = goodService;
         }
         // GET: WareHouse
         public ActionResult Index()
@@ -94,9 +96,23 @@ namespace InfoManageSystem.WebUI.Controllers
         }
 
         //返回商品在仓库的存储详情的视图
-        public ActionResult WareHouseDetail()
+        public ActionResult WareHouseStorage()
         {
             return View();
+        }
+
+        //返回商品在仓库的存储情况
+        public JsonResult GetGoodsWareHouseStorage(int pageIndex=1,int pageSize = 10,string name="")
+        {
+            int total = 0;
+            IEnumerable<GoodsStorageInfo> info = goodService.GetGoodsWareHouseStorage(pageIndex, pageSize, name, out total);
+            return Json(new { rows = info, total = total }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateGoodsStorage(int wareHouseId,int goodsId,int quantity)
+        {
+            return null;
         }
     }
 }

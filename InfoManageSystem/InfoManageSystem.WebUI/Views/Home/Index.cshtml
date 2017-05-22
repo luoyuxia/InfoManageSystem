@@ -95,7 +95,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a id="WareHouse" href="#">仓库详情</a></li>
-                            <li><a href="#">商品库存</a></li>
+                            <li><a id="WareHouseStorage" href="#">商品库存</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -176,6 +176,13 @@
         });
         $("#Shipment").click(function () {
             var item = { 'id': 'Shipment', 'name': '商品出库', 'url': '/Shipment', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#WareHouseStorage").click(function () {
+            var item = {
+                'id': 'WareHouseStorage', 'name': '商品库存', 'url': '/WareHouse/WareHouseStorage', 'closable': true,
+                'iframe': true
+            };
             changeFramwHeight(closableTab.addTab(item));
         });
         function changeFramwHeight(frameId)

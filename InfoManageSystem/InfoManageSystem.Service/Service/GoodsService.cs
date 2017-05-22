@@ -13,9 +13,11 @@ namespace InfoManageSystem.Service.Service
     public class GoodsService : IGoodsService
     {
         IGoodsRespository goodsRespository;
-        public GoodsService(IGoodsRespository goodsRespository)
+        IWareHouseRespository wareHouseRespository;
+        public GoodsService(IGoodsRespository goodsRespository,IWareHouseRespository wareHouseRespository)
         {
             this.goodsRespository  = goodsRespository;
+            this.wareHouseRespository = wareHouseRespository;
         }
         public bool DeleteGoods(int GoodsID)
         {
@@ -54,6 +56,15 @@ namespace InfoManageSystem.Service.Service
         public bool SaveGoods(Goods goods)
         {
             return goodsRespository.SaveGoods(goods);
+        }
+
+        //得到商品的库存信息
+        public List<GoodsStorageInfo> GetGoodsWareHouseStorage(int offset,int pageSize,string name,out int total)
+        {
+
+            var query = goodsRespository.GoodsWareHouseStorage.Where(s=>s.GoodsName.Contains(name));
+            total = query.Count();          
+            return query.OrderBy(s => s.GoodsId).Skip((offset - 1) * pageSize).Take(pageSize).ToList();
         }
     }
 }

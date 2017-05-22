@@ -16,5 +16,9 @@ namespace InfoManageSystem.Domain.Abstract
         Goods GetGoodsByID(int GoodsId);
 
         IQueryable<Goods> Goods { get; }
+
+
+        //商品库存的查询，不经过任何处理
+        IQueryable<GoodsStorageInfo> GoodsWareHouseStorage { get; }
     }
 }

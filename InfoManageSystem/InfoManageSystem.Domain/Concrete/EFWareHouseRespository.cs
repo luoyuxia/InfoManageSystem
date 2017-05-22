@@ -11,6 +11,15 @@ namespace InfoManageSystem.Domain.Concrete
     public class EFWareHouseRespository : IWareHouseRespository
     {
         private EFDbContext context = new EFDbContext();
+
+        public IQueryable<GoodsStorage> GoodsStorage
+        {
+            get
+            {
+                return context.GoodsStorage;
+            }
+        }
+
         public IQueryable<WareHouse> WareHouse
         {
             get

@@ -132,6 +132,8 @@
                         var r = /^\d+$/;
                         if (!r.test(v))
                             return "商品进货数量必须是整数";
+                        if (parseInt(v) <= 0)
+                            return "商品进货数量必须大于0";
                     }
                 }
             }

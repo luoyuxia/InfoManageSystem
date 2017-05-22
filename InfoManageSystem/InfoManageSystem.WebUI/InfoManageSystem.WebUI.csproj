@@ -294,7 +294,7 @@
     <Content Include="Views\Storage\Index.cshtml" />
     <Content Include="Views\Dealers\Index.cshtml" />
     <Content Include="Views\Shipment\Index.cshtml" />
-    <Content Include="Views\WareHouse\WareHouseDetail.cshtml" />
+    <Content Include="Views\WareHouse\WareHouseStorage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

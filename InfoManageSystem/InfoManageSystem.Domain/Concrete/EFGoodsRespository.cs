@@ -47,6 +47,28 @@ namespace InfoManageSystem.Domain.Concrete
             }
         }
 
+        public IQueryable<GoodsStorageInfo> GoodsWareHouseStorage
+        {
+            get
+            {
+                var query = from goods in context.Goods
+                            join goodsStorage in context.GoodsStorage
+                            on goods.Id equals goodsStorage.GoodsId
+                            join wareHouse in context.WareHouse
+                            on goodsStorage.WareHouseId equals wareHouse.Id
+                            select new GoodsStorageInfo
+                            {
+                                GoodsId = goods.Id,
+                                GoodsName = goods.Name,
+                                WareHouseId = wareHouse.Id,
+                                WareHouseName = wareHouse.Name,
+                                WareHouseAddress = wareHouse.Location,
+                                Quantity = goodsStorage.Quantity
+                            };
+                return query;
+            }
+        }
+
         public Goods GetGoodsByID(int GoodsId)
         {
             return context.Goods.Find(GoodsId);

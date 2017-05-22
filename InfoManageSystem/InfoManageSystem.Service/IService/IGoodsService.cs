@@ -20,5 +20,8 @@ namespace InfoManageSystem.Service.IService
         IEnumerable<Goods> GetGoodsPageable(int offest, int pageSize, out int total);
 
         IEnumerable<Goods> GetAllGoodsPageableByName(int offset, int pageSize, string name, out int total);
+
+        //得到商品的库存信息
+        List<GoodsStorageInfo> GetGoodsWareHouseStorage(int offset, int pageSize, string name, out int total);
     }
 }
