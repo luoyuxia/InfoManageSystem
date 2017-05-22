@@ -18,6 +18,14 @@ namespace InfoManageSystem.Domain.Entities
 
         public int Quantity { get; set; }
 
+        public int GoodsId { get; set; }
+
+        public int WareHouseId { get; set; }
+
+        [ForeignKey("WareHouseId")]
+        public virtual WareHouse WareHouse { get; set; }
+
+        [ForeignKey("GoodsId")]
         public virtual Goods Goods { get; set; }
 
         public virtual ShipmentList ShipmentList { get; set; }

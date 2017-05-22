@@ -83,7 +83,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a id="GoodsType" href="#">商品类别</a></li>
-                            <li><a href="#">所有商品</a></li>
+                            <li><a id="Goods" href="#">所有商品</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -94,7 +94,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#">仓库详情</a></li>
+                            <li><a id="WareHouse" href="#">仓库详情</a></li>
                             <li><a href="#">商品库存</a></li>
                         </ul>
                     </li>
@@ -106,11 +106,11 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#">商品入库</a></li>
-                            <li><a href="#">商品出库</a></li>
+                            <li><a id="Storage" href="#">商品入库</a></li>
+                            <li><a id="Shipment" href="#">商品出库</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="fa fa-users"></i> <span>客户管理</span></a></li>
+                    <li><a id="Dealers" href="#"><i class="fa fa-users"></i> <span>客户管理</span></a></li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-search-plus"></i> <span>信息查询</span>
@@ -152,10 +152,30 @@
             $(this).addClass("active");
         });
 
-    //    var item = { 'id': '1', 'name': '首页', 'url': '/Home/EasyUI', 'closable': false,'iframe':false };
-   //     closableTab.addTab(item);
         $("#GoodsType").click(function () {
-            var item = { 'id': 'GoodsType', 'name': '商品类别', 'url': '/GoodsType', 'closable': true ,'iframe':true};
+            var item = { 'id': 'Category', 'name': '商品类别', 'url': '/Category', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+
+        $("#Goods").click(function () {
+            var item = { 'id': 'Goods', 'name': '所有商品', 'url': '/Goods', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+
+        $("#WareHouse").click(function () {
+            var item = {'id':'WareHosue','name':'仓库详情','url':'/WareHouse','closable':true,'iframe':true};
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#Storage").click(function () {
+            var item = { 'id': 'Storage', 'name': '商品入库', 'url': '/Storage', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#Dealers").click(function () {
+            var item = { 'id': 'Dealers', 'name': '客户管理', 'url': '/Dealers', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#Shipment").click(function () {
+            var item = { 'id': 'Shipment', 'name': '商品出库', 'url': '/Shipment', 'closable': true, 'iframe': true };
             changeFramwHeight(closableTab.addTab(item));
         });
         function changeFramwHeight(frameId)

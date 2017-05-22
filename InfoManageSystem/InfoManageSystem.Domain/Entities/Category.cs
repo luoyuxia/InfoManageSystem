@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Web.Script.Serialization;
 namespace InfoManageSystem.Domain.Entities
 {
     [Table("Category")]

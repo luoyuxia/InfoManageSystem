@@ -10,11 +10,10 @@ namespace InfoManageSystem.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private IProductsRepository productsRepository;
+  //      private IProductsRepository productsRepository;
 
-        public HomeController(IProductsRepository productsRepository)
+        public HomeController()
         {
-            this.productsRepository = productsRepository;
         }
         // GET: Home
         public ActionResult Index()

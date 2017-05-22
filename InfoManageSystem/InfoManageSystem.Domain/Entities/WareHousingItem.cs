@@ -16,11 +16,14 @@ namespace InfoManageSystem.Domain.Entities
         public decimal PurchasePrice { get; set; }
 
         public int Quantity { get; set; }
+        public int WareHouseId { get; set; }
+        public int GoodsId { get; set; }
 
+        [ForeignKey("WareHouseId")]
         //所进的仓库
         public virtual WareHouse WareHouse { get; set; }
 
-
+        [ForeignKey("GoodsId")]
         public virtual Goods Goods { get; set; }
 
         public virtual WareHousingList WareHousingList { get; set; }

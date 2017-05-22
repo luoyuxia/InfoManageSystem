@@ -17,7 +17,7 @@ namespace InfoManageSystem.Domain.Entities
 
         [Required]
         [StringLength(maximumLength: 30)]
-        public string name;
+        public string Name { get; set; }
 
         [DefaultValue(0)]
         [Required]
@@ -26,6 +26,9 @@ namespace InfoManageSystem.Domain.Entities
         [Required]
         public decimal Price { get; set; }
 
+        public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
         //商品的存储地点

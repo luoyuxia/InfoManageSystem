@@ -84,12 +84,17 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestController\RouteTest.cs" />
+    <Compile Include="TestService\GoodsTest.cs" />
     <Compile Include="TestService\ProductTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InfoManageSystem.Domain\InfoManageSystem.Domain.csproj">
       <Project>{a0de8704-d6cd-40d9-b546-d0b5727b97f3}</Project>
       <Name>InfoManageSystem.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoManageSystem.Service\InfoManageSystem.Service.csproj">
+      <Project>{42b94f63-b382-42df-a480-48c2bde475da}</Project>
+      <Name>InfoManageSystem.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\InfoManageSystem.WebUI\InfoManageSystem.WebUI.csproj">
       <Project>{79342d2b-eabb-4c20-90e3-21a78eab72bd}</Project>

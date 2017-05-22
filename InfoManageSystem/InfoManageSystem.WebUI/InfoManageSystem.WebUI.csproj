@@ -253,8 +253,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\GoodsTypeController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DealersController.cs" />
+    <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShipmentController.cs" />
+    <Compile Include="Controllers\StorageController.cs" />
+    <Compile Include="Controllers\WareHouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -281,18 +286,15 @@
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Views\Home\PersonalInfo.cshtml" />
     <Content Include="Views\Home\EasyUI.cshtml" />
-    <Content Include="Views\GoodsType\Index.cshtml" />
-    <Content Include="Views\json\350.json" />
-    <Content Include="Views\json\353.json" />
-    <Content Include="Views\json\409.json" />
-    <Content Include="Views\json\data1.json" />
-    <Content Include="Views\json\data2.json" />
-    <Content Include="Views\json\data3.json" />
-    <Content Include="Views\json\data4.json" />
-    <Content Include="Views\json\data5.json" />
-    <Content Include="Views\json\data6.json" />
-    <Content Include="Views\json\data7.json" />
+    <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Content\js\toastr.min.js" />
+    <Content Include="Views\Layout\_iFrameLayout.cshtml" />
+    <Content Include="Views\Goods\Index.cshtml" />
+    <Content Include="Views\WareHouse\Index.cshtml" />
+    <Content Include="Views\Storage\Index.cshtml" />
+    <Content Include="Views\Dealers\Index.cshtml" />
+    <Content Include="Views\Shipment\Index.cshtml" />
+    <Content Include="Views\WareHouse\WareHouseDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -303,7 +305,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InfoManageSystem.Domain\InfoManageSystem.Domain.csproj">

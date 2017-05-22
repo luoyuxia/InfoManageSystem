@@ -22,5 +22,7 @@ namespace InfoManageSystem.Domain.Entities
 
         [StringLength(maximumLength: 50)]
         public string Address { get; set; }
+
+        public virtual ICollection<ShipmentList> ShipmentList { get; set; }
     }
 }

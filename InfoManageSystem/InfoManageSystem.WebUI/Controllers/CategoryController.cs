@@ -29,33 +29,57 @@ namespace InfoManageSystem.WebUI.Controllers
             int total = 0;
             IEnumerable<Category> categorys = categoryService.getCategoryByName(pageIndex, pageSize, name,out total);
 
-            var result = new { rows = categorys, total = total };
+            var list = from category in categorys
+                       select new
+                       {
+                           Id = category.Id,
+                           Name = category.Name,
+                           Description = category.Description
+                       };
+
+            var result = new { rows = list, total = total };
             
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DeleteCategory(int cateGoryId)
+        public JsonResult GetAllCategory()
         {
-            return Json(new { result = categoryService.deleteCategory(cateGoryId) }, JsonRequestBehavior.AllowGet);
+            IEnumerable<Category> categorys = categoryService.getAllCategory();
+            var result = from category in categorys
+                         select new
+                         {
+                             ID = category.Id,
+                             Name = category.Name
+                         };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteCategory(List<int> categoryId)
+        {
+            bool deleteSuccess = true;
+            foreach(int id in categoryId)
+            {
+                deleteSuccess = deleteSuccess && categoryService.deleteCategory(id);
+            }
+            return Json(new { result = deleteSuccess }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult AddCategory(Category category)
+        public JsonResult AddCategory(List<Category> categorys)
         {
-            return Json(new { result = categoryService.saveCategory(category) }, JsonRequestBehavior.AllowGet);
+            bool addSuccess = true;
+            foreach(Category c in categorys)
+            {
+                addSuccess = addSuccess && categoryService.saveCategory(c);
+            }
+
+            return Json(new { result = addSuccess }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult UpdateCategory(Category category)
         {
             return Json(new { result = categoryService.saveCategory(category) }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult EditCategory(Category category)
-        {
-            string name = category.Name;
-            return Json(new {name = 2});
         }
     }
 }

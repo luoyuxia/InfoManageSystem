@@ -14,7 +14,9 @@ namespace InfoManageSystem.Domain.Entities
         public int Id { get; set; }
         public DateTime WareHousingTime { get; set; }
         public decimal TotalPrice { get; set; }
+        public int EmployeeId { get; set; }
 
+        [ForeignKey("EmployeeId")]
         public virtual Employee Employee { get; set; }
 
         public virtual ICollection<WareHousingItem> WareHousingItems { get; set; }

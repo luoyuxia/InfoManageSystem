@@ -23,6 +23,10 @@ namespace InfoManageSystem.Domain.Entities
         [DefaultValue("无")]
         public string ShipmentAddress { get; set; }
 
+        [DefaultValue(0)]
+        public int DealersId { get; set; }
+
+        [ForeignKey("DealersId")]
         public virtual Dealers Dealers { get; set; }
 
 

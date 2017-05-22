@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_iFrameLayout</title>
+    @Styles.Render("~/Content/bootstrap-table")
+    @Scripts.Render("~/bundles/bootstrap-table")
+    <link rel="stylesheet" href="~/Content/css/toastr.css" />
+    <script src="~/Content/js/toastr.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="toolbar" class="btn-group">
+            <button id="btn_add" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button id="btn_save" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>保存
+            </button>
+            <button id="btn_delete" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+            <span class="alert-danger" id="error"></span>
+        </div>
+        <table id="@ViewBag.tableName"></table>
+    </div>
+    @RenderBody()
+</body>
+</html>

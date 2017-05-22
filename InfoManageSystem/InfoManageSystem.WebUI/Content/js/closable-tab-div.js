@@ -8,6 +8,7 @@ var closableTab = {
 
 		var id = "tab_seed_" + tabItem.id;
 		var container ="tab_container_" + tabItem.id;
+		var iframeId = "frame_"+tabItem.id;
 
 		$("li[id^=tab_seed_]").removeClass("active");
 		$("div[id^=tab_container_]").removeClass("active");
@@ -34,16 +35,18 @@ var closableTab = {
 			}
 			else
 			{
-			    var tabpanel = '<iframe role="tabpanel" src=' + tabItem.url + ' class="tab-pane" id="' + container + '" style="width: 100%;" scrolling="no"  frameborder="0">' +
-	    					  '正在加载...' +
-	    				   '</iframe>';
+			    var tabpanel = '<div role="tabpanel" class="tab-pane" id="' + container + '" style="width: 100%; height:100%">'
+			    '正在加载...' + '</div>';
 			    $('.nav-tabs').append(li_tab);
 			    $('.tab-content').append(tabpanel);
+
+			    var iframe = $('<iframe src=' + tabItem.url + ' id="' + iframeId + '" style="width: 100%;" scrolling="no" frame border="0"></iframe>');
+			    $('#'+container).append(iframe); 
 			}
 		}
 		$("#"+id).addClass("active");
 		$("#" + container).addClass("active");
-		return container;
+		return iframeId;
 	},
 
 	//关闭tab

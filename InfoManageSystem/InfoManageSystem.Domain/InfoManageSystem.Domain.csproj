@@ -51,6 +51,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,11 +61,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\ICategoryResposity.cs" />
-    <Compile Include="Abstract\IProductsRepository.cs" />
+    <Compile Include="Abstract\ICategoryRespository.cs" />
+    <Compile Include="Abstract\IDealersRespository.cs" />
+    <Compile Include="Abstract\IGoodsRespository.cs" />
+    <Compile Include="Abstract\IShipmentRespository.cs" />
+    <Compile Include="Abstract\IWareHouseRespository.cs" />
+    <Compile Include="Abstract\IWareHousingListRespository.cs" />
+    <Compile Include="Concrete\EFDealerRepository.cs" />
     <Compile Include="Concrete\EFCategoryRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
-    <Compile Include="Concrete\EFReproductRepository.cs" />
+    <Compile Include="Concrete\EFGoodsRespository.cs" />
+    <Compile Include="Concrete\EFShipmentRespository.cs" />
+    <Compile Include="Concrete\EFWareHouseRespository.cs" />
+    <Compile Include="Concrete\EFWareHousingListRespository.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Dealers.cs" />
     <Compile Include="Entities\Employee.cs" />
@@ -74,9 +84,13 @@
     <Compile Include="Entities\WareHouse.cs" />
     <Compile Include="Entities\WareHousingItem.cs" />
     <Compile Include="Entities\WareHousingList.cs" />
-    <Compile Include="Migrations\201705201325581_init database.cs" />
-    <Compile Include="Migrations\201705201325581_init database.Designer.cs">
-      <DependentUpon>201705201325581_init database.cs</DependentUpon>
+    <Compile Include="Migrations\201705220559365_init db.cs" />
+    <Compile Include="Migrations\201705220559365_init db.Designer.cs">
+      <DependentUpon>201705220559365_init db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705221114135_add shipmentitem reference.cs" />
+    <Compile Include="Migrations\201705221114135_add shipmentitem reference.Designer.cs">
+      <DependentUpon>201705221114135_add shipmentitem reference.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,8 +108,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705201325581_init database.resx">
-      <DependentUpon>201705201325581_init database.cs</DependentUpon>
+    <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705220559365_init db.resx">
+      <DependentUpon>201705220559365_init db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705221114135_add shipmentitem reference.resx">
+      <DependentUpon>201705221114135_add shipmentitem reference.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

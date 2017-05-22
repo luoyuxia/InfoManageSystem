@@ -25,9 +25,11 @@ namespace InfoManageSystem.Domain.Entities
         [StringLength(maximumLength: 50)]
         public string Location { get; set; }
 
-        public WareHouseCapacity capacity { get; set; }
+        public WareHouseCapacity Capacity { get; set; }
 
         public virtual ICollection<GoodsStorage> GoodsStorages { get; set; }
+
+        public virtual ICollection<ShipmentItem> ShipmentItems { get; set; }
     }
 
 }
