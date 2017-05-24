@@ -80,6 +80,7 @@
     <Compile Include="Entities\Goods.cs" />
     <Compile Include="Entities\GoodsStorage.cs" />
     <Compile Include="Entities\GoodsStorageInfo.cs" />
+    <Compile Include="Entities\QueryModel.cs" />
     <Compile Include="Entities\ShipmentItem.cs" />
     <Compile Include="Entities\ShipmentList.cs" />
     <Compile Include="Entities\WareHouse.cs" />

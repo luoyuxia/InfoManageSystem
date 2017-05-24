@@ -57,5 +57,10 @@ namespace InfoManageSystem.Domain.Concrete
             context.SaveChanges();
             return true;
         }
+
+        public void SaveChanges()
+        {
+            context.SaveChanges();
+        }
     }
 }

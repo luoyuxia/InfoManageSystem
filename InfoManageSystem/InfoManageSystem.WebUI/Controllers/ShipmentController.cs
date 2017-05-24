@@ -31,6 +31,8 @@ namespace InfoManageSystem.WebUI.Controllers
             return Json(new { canShipment = wareHouseService.HasEnoughGoods(wareHouseId,goodId,quantity) });
         }
 
+
+        //保存出货单
         [HttpPost]
         public JsonResult Shipment(List<ShipmentItem> shipmentItemList, int dealerId)
         {
@@ -44,5 +46,57 @@ namespace InfoManageSystem.WebUI.Controllers
             };
             return Json(shipmentService.SaveShipmentList(shipmentList));
         }
+
+        //出货记录查询视图
+        public ActionResult Query()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult QueryShipmentRecord(int pageIndex=1,int pageSize=10,string Order = "asc",string SortField="Id",
+            string startDate=null,string endDate = null)
+        {
+            int total = 0;
+            QueryModel queryModel = new QueryModel
+            {
+                StartDate = startDate == null ? DateTime.MinValue : DateTime.Parse(startDate),
+                EndDate = endDate == null ? DateTime.MaxValue : DateTime.Parse(endDate),
+                pageIndex = pageIndex,
+                pageSize = pageSize,
+                SortField = SortField,
+                Order = Order
+            };
+            var list = shipmentService.GetAllShipmentByPage(queryModel, out total).ToList();
+            var result = from shipmentList in list
+                         select new
+                         {
+                             Id = shipmentList.Id,
+                             DealersId = shipmentList.DealersId,
+                             Dealers = shipmentList.Dealers.Name,
+                             ShipmentTime = shipmentList.ShipmentTime.ToString(),
+                             TotalPrice = shipmentList.TotalPrice
+                         };
+            return Json(new { rows = result, total = total },JsonRequestBehavior.AllowGet);
+        }
+
+        //得到一条出货记录的详细信息,每一条出货项以及出货数量
+        public JsonResult GetShipmentDetail(int shipmentListId)
+        {
+            var shipmentItemList = shipmentService.GetShipmentItems(shipmentListId).ToList();
+            var result = from shipmentItem in shipmentItemList
+                         select new
+                         {
+                             ShipmentItemId = shipmentItem.Id,
+                             GoodsId = shipmentItem.GoodsId,
+                             GoodsName = shipmentItem.Goods.Name,
+                             WareHouseId = shipmentItem.WareHouseId,
+                             WareHouse = shipmentItem.WareHouse.Name,
+                             SellPrice = shipmentItem.SellPrice,
+                             Quantity = shipmentItem.Quantity
+                         };
+            return Json(result,JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

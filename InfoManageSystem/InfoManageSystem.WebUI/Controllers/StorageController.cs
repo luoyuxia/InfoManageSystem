@@ -38,5 +38,11 @@ namespace InfoManageSystem.WebUI.Controllers
             return Json(wareHousingListService.SaveWareHousingList(wareHousingList),JsonRequestBehavior.AllowGet);
 
         }
+
+        //商品入库查询视图
+        public ActionResult Query()
+        {
+            return View();
+        }
     }
 }

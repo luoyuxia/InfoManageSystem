@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewBag.Title = "Query";
+    Layout = "~/Views/Layout/_iFrameQueryLayout.cshtml";
+}
+
+@Styles.Render("~/Content/bootstrap-datapicker");
+@Scripts.Render("~/bundles/bootstrap-timepicker");
+<script src="~/Content/bootstrap-table/bootstrap-table-export.js"></script>
+<script src="~/Content/bootstrap-table/tableExport.js"></script>
+<div class="container">
+    <div class="control-group row col-md-12" id="date-picker">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <span id="search" class="btn btn-success col-md-3"><i class="glyphicon glyphicon-search"></i>搜索</span>
+                <label for="start_date" class="col-md-1 control-label">开始</label>
+                <span id="start_date" class="input-group date form_date" data-date="" data-date-format="yyyy-MM-dd" data-link-field="start_date" data-link-format="yyyy-mm-dd">
+                    <input id="start" class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="start_date" class="col-md-1 control-label">结束</label>
+                <span id="end_date" class="input-group date form_date" data-date="" data-date-format="yyyy-MM-dd" data-link-field="start_date" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </span>
+            </div>
+        </form>
+    </div>
+    <table id="tb_shipment_query">
+
+    </table>
+    <div id="toolbar">
+        <select class="form-control">
+            <option value="">导出当前页面数据</option>
+            <option value="all">导出所有页面数据</option>
+            <option value="selected">导出选中数据</option>
+        </select>
+    </div>
+</div>
+<script src="~/Content/js/moment-with-locales.js"></script>
+<script type="text/javascript">
+    var startDate;
+    var endDate;
+    $('.form_date').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('#start_date').datetimepicker().on('changeDate', function (ev) {
+        startDate = ev.date;
+    });
+    $("#end_date").datetimepicker().on('changeDate', function (ev) {
+        endDate = ev.date;
+    });
+    $("#search").click(function () {
+        if(startDate==null || endDate == null)
+        {
+            alert("请输入时间范围");
+            return;
+        }
+        if(endDate < startDate)
+        {
+            alert("终止日期不能小于起始日期");
+            return;
+        }
+        $("#tb_shipment_query").bootstrapTable('refresh', {
+            'query':{
+                'startDate': startDate.toLocaleString(),
+                'endDate': endDate.toLocaleString()
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#tb_shipment_query").bootstrapTable({
+            contentType: "application/x-www-form-urlencoded",
+            idField: "Id",
+            method: 'Post',
+            toolbar:'#toolbar',
+            showExport: true,//显示导出按钮  
+            detailView: true,//父子表
+            clickToSelect: true,
+            cache: false,
+            striped: true,
+            showColumns: true,
+            uniqueId: "Id",
+            sortOrder: "asc",
+            showExport: true,
+            silent: true,
+            pagination: true,
+            showRefresh: true,
+            sidePagination: "server",
+            showColumns: true,
+            pagination: true,
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 25, 50, 100],
+            exportDataType: 'all',
+            url: "/Shipment/QueryShipmentRecord",
+            queryParams: queryParams,
+            responseHandler: responseHandler,
+            height: 450,
+            columns: [{
+                checkbox: true
+            },
+            {
+                field: "Id",
+                title: "出货单号",
+                sortable:true
+            },
+            {
+                field:'DealersId',
+                title:"经销商编号",
+                sortable:true
+            },
+            {
+                field:"Dealers",
+                title:"经销商",
+            },
+            {
+                field:"ShipmentTime",
+                title:"出货时间",
+                sortable: true,
+                formatter: function (value, row, index) {
+                        var day = moment(value);
+                        return day.format('YYYY年 MM月 DD日');
+                }
+            },
+            {
+                field:"TotalPrice",
+                title:"总计金额",
+                sortable:true
+            }
+            ],
+            //注册加载子表的事件。注意下这里的三个参数！
+            onExpandRow: function (index, row, $detail) {
+                InitSubTable(index, row, $detail);
+            }
+        });
+    });
+
+    function queryParams(params) {
+        var param = {
+            pageindex: this.pageNumber,
+            pageSize: this.pageSize,
+            Order: params.order,//排序
+            SortField: params.sort//排序字段
+        }
+        return param;
+    }
+
+    function responseHandler(res) {
+        if (res) {
+            return {
+                "rows": res.rows,
+                "total": res.total
+            };
+        } else {
+            return {
+                "rows": [],
+                "total": 0
+            };
+        }
+    }
+
+    function InitSubTable(index,row,$detail)
+    {
+        var shipmentId = row.Id;
+        //插入子表格
+        var sub_table = $detail.html('<table></table>').find('table');
+        //初始化子表格
+        $(sub_table).bootstrapTable({
+            url:"@Url.Action("GetShipmentDetail")",
+            method: 'get',
+            queryParams:{shipmentListId:shipmentId},
+            ajaxOptions:{shipmentListId:shipmentId},
+            clickToSelect: true,
+     //       detailView: true,//父子表
+            uniqueId: "ShipmentItemId",
+            pageSize: 10,
+            pageList: [10, 25,50],
+            columns:[{
+                checkbox:true
+            },
+            {
+                field:'ShipmentItemId',
+                title:'出货项编号'
+            },
+            {
+                field:'GoodsId',
+                title:'出货商品编号'
+            },
+            {
+                field:'GoodsName',
+                title:'出货商品'
+            },
+            {
+                field:'WareHouseId',
+                title:'出货仓库编号'
+            },
+            {
+                field:'WareHouse',
+                title:'出货仓库'
+            },
+            {
+                field:'SellPrice',
+                title:'出货价格'
+            },
+            {
+                field:'Quantity',
+                title:'出货数量'
+            }
+            ]
+
+            /*,
+            onExpandRow: function (index, row, $detail) {
+                InitSubTable(index, row, $detail);
+            }*/
+         });
+    }
+</script>
+<script>
+    var $table = $('#tb_shipment_query');
+    $(function () {
+        $('#toolbar').find('select').change(function () {
+            $table.bootstrapTable('refreshOptions', {
+                exportDataType: $(this).val()
+            });
+        });
+    })
+</script>

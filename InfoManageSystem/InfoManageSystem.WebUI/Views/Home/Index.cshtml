@@ -119,8 +119,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/">入库查询</a></li>
-                            <li><a href="#">出库查询</a></li>
+                            <li><a id="WareHousingQuery" href="#">入库查询</a></li>
+                            <li><a id="ShipmentQuery" href="#">出库查询</a></li>
                             <li><a href="#">客户进货情况</a></li>
                             <li><a href="#">仓库商品清单</a></li>
                             <li><a href="#">商品销售排行</a></li>
@@ -181,6 +181,21 @@
         $("#WareHouseStorage").click(function () {
             var item = {
                 'id': 'WareHouseStorage', 'name': '商品库存', 'url': '/WareHouse/WareHouseStorage', 'closable': true,
+                'iframe': true
+            };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+
+        $("#WareHousingQuery").click(function () {
+            var item = {
+                'id': 'WareHousingQuery', 'name': '入库查询', 'url': '/Storage/Query', 'closable': true,
+                'iframe': true
+            };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#ShipmentQuery").click(function () {
+            var item = {
+                'id': 'ShipmentQuery', 'name': '出库查询', 'url': '/Shipment/Query', 'closable': true,
                 'iframe': true
             };
             changeFramwHeight(closableTab.addTab(item));
