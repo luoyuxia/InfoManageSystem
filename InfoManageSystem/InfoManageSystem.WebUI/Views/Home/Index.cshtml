@@ -24,19 +24,20 @@
                             <!-- Menu toggle button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
+                                <span class="label label-warning warningNums"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
+                                <li class="header">你有 <span class="warningNums"></span>条提醒</li>
                                 <li>
                                     <!-- Inner Menu: contains the notifications -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- start notification -->
+                                    <ul class="menu" id="warningList">
+                            <!--         <li>
+                                            <!-- start notification 
                                             <a href="#">
                                                 <i class="fa fa-users text-aqua"></i> 5 new members joined today
                                             </a>
                                         </li>
+                                -->   
                                         <!-- end notification -->
                                     </ul>
                                 </li>
@@ -141,11 +142,47 @@
                 </div>
             </section>
         </div> 
+        <div ></div>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
+    <script type="text/javascript">
+        $.get("/Warning/GetWarnings", function (data) {
+            displayWarning(data);
+        });
+        ws = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '/api/WS?user=luoyuxia');
+        ws.onmessage = function(result)
+        {
+            warnings = JSON.parse(result.data);
+            displayWarning(warnings);
+        }
+
+        function displayWarning(warnings)
+        {
+            var warningNums = $(".warningNums");
+            warningNums.html("");
+            if (warnings.length > 0)
+                warningNums.html(warnings.length);
+            var warningList = $("#warningList");
+            warningList.html("");
+            for (var i = 0; i < warnings.length; i++) {
+                var warning = $("<li><a href = '#' data-toggle='tooltip' data-placement='right' title ='其编号为" +
+                    warnings[i].GoodsId + ",现存货量为" + warnings[i].CurrentStorage + ",其最低存货为" + warnings[i].MinStorage
+                    + "'>"
+                    + "<i class=fa  fa-warning text-yellow>"
+                    + warnings[i].GoodName + " 存货不足" + "</i></a></li>"
+                    );
+                warningList.append(warning);
+                /*        var warning = $("<li><a href='#'><i class=fa  fa-warning text-yellow>"
+                            + "编号为 " + data[i].GoodsId + " 的 " + data[i].GoodName + " 的存货不足，其现存货为"
+                            + data[i].CurrentStorage + ",其最低存货为" + data[i].MinStorage
+                            + "</i></a></li>")*/
+
+            }
+        }
+    </script>
     <script type="text/javascript">
         $(".sidebar-menu li").click(function () {
             $(".sidebar-menu li").removeClass("active");

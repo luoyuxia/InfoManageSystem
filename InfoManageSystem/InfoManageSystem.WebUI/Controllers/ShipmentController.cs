@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using InfoManageSystem.Domain.Entities;
 using InfoManageSystem.Service.IService;
+using System.Threading;
+using Newtonsoft.Json;
 
 namespace InfoManageSystem.WebUI.Controllers
 {
@@ -12,10 +14,12 @@ namespace InfoManageSystem.WebUI.Controllers
     {
         private IWareHouseService wareHouseService;
         private IShipmentService shipmentService;
-        public ShipmentController(IWareHouseService wareHouseService,IShipmentService shipmentService)
+        private IWarningService warningService;
+        public ShipmentController(IWareHouseService wareHouseService,IShipmentService shipmentService,IWarningService warningService)
         {
             this.wareHouseService = wareHouseService;
             this.shipmentService = shipmentService;
+            this.warningService = warningService;
         }
         // GET: Shipment
         public ActionResult Index()
@@ -44,7 +48,12 @@ namespace InfoManageSystem.WebUI.Controllers
                 ShipmentItems = shipmentItemList,
                 TotalPrice = TotalPrice
             };
-            return Json(shipmentService.SaveShipmentList(shipmentList));
+            bool result = shipmentService.SaveShipmentList(shipmentList);
+            new Thread(delegate()
+            {
+                WSController.SendWarnings(warningService);
+            }).Start();      
+            return Json(result);
         }
 
         //出货记录查询视图

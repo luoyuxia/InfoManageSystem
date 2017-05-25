@@ -50,6 +50,7 @@
     <Compile Include="IService\IShipmentService.cs" />
     <Compile Include="IService\IWareHouseService.cs" />
     <Compile Include="IService\IWareHousingListService.cs" />
+    <Compile Include="IService\IWarningService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\DealersService.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Service\ShipmentService.cs" />
     <Compile Include="Service\WareHouseService.cs" />
     <Compile Include="Service\WareHousingListService.cs" />
+    <Compile Include="Service\WarningService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InfoManageSystem.Domain\InfoManageSystem.Domain.csproj">

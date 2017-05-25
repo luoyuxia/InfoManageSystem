@@ -57,6 +57,9 @@ namespace InfoManageSystem.WebUI.Infrastructure
 
             kernel.Bind<IShipmentRespository>().To<EFShipmentRespository>();
             kernel.Bind<IShipmentService>().To<ShipmentService>();
+
+            kernel.Bind<IWarningRespository>().To<EFWarningRespository>();
+            kernel.Bind<IWarningService>().To<WarningService>();
         }
     }
 }

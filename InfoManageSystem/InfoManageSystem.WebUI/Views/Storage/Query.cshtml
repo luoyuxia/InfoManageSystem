@@ -1,11 +1,158 @@
 ﻿
 @{
     ViewBag.Title = "Query";
-    Layout = "~/Views/Layout/_iFrameLayout.cshtml";
+    Layout = "~/Views/Layout/_iFrameQueryLayout.cshtml";
 }
-
-<h2>Query</h2>
 <script type="text/javascript">
-    $("#toolbar").remove();
+    $(function () {
+        $("#tb_record").bootstrapTable({
+            contentType: "application/x-www-form-urlencoded",
+            idField: "Id",
+            method: 'Get',
+            toolbar:'#toolbar',
+            showExport: true,//显示导出按钮  
+            detailView: true,//父子表
+            clickToSelect: true,
+            cache: false,
+            striped: true,
+            showColumns: true,
+            uniqueId: "Id",
+            sortOrder: "asc",
+            showExport: true,
+            silent: true,
+            pagination: true,
+            showRefresh: true,
+            sidePagination: "server",
+            showColumns: true,
+            pagination: true,
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 25, 50, 100],
+            exportDataType: 'all',
+            url: "@Url.Action("QueryWarehousingList")",
+            queryParams: queryParams,
+            responseHandler: responseHandler,
+            height: 450,
+            columns: [{
+                checkbox: true
+            },
+            {
+                field: "Id",
+                title: "入库单号",
+                sortable:true
+            },
+            {
+                field:'EmployeeId',
+                title:"入库员工编号",
+                sortable:true
+            },
+            {
+                field:"Employee",
+                title:"入库员工",
+            },
+            {
+                field:"WareHousingTime",
+                title:"入库时间",
+                sortable: true,
+                formatter: function (value, row, index) {
+                    var day = moment(value);
+                    return day.format('YYYY年 MM月 DD日');
+                }
+            },
+            {
+                field:"TotalQuantity",
+                title:'入库商品数量',
+            },
+
+            {
+                field:"TotalPrice",
+                title:"总计金额",
+                sortable:true
+            }
+            ],
+            //注册加载子表的事件。注意下这里的三个参数！
+            onExpandRow: function (index, row, $detail) {
+                InitSubTable(index, row, $detail);
+            }
+        });
+    });
+
+    function queryParams(params) {
+        var param = {
+            queryModel:
+            {
+                pageindex: this.pageNumber,
+                pageSize: this.pageSize,
+                Order: params.order,//排序
+                SortField: params.sort//排序字段
+            }
+        }
+        return param;
+    }
+
+    function responseHandler(res) {
+        if (res) {
+            return {
+                "rows": res.rows,
+                "total": res.total
+            };
+        } else {
+            return {
+                "rows": [],
+                "total": 0
+            };
+        }
+    }
+
+    function InitSubTable(index,row,$detail)
+    {
+        var WareHousingListId = row.Id;
+        //插入子表格
+        var sub_table = $detail.html('<table></table>').find('table');
+        //初始化子表格
+        $(sub_table).bootstrapTable({
+        url:"@Url.Action("GetWareHousingListDetail")",
+        method: 'get',
+        queryParams: { WareHousingListID: WareHousingListId },
+        ajaxOptions:{WareHousingListId:WareHousingListId},
+        clickToSelect: true,
+        //       detailView: true,//父子表
+        uniqueId: "WareHousingItemId",
+        pageSize: 10,
+        pageList: [10, 25,50],
+        columns:[{
+            checkbox:true
+        },
+        {
+            field:'WareHousingItemID',
+            title:'入库项编号'
+        },
+        {
+            field:'GoodsId',
+            title:'入库商品编号'
+        },
+        {
+            field:'GoodsName',
+            title:'入库商品'
+        },
+        {
+            field:'WareHouseId',
+            title:'入库仓库编号'
+        },
+        {
+            field:'WareHouse',
+            title:'所入仓库'
+        },
+        {
+            field:'PurchasePrice',
+            title:'进货价格'
+        },
+        {
+            field:'Quantity',
+            title:'入库数量'
+        }
+        ]
+    });
+    }
 </script>
 
