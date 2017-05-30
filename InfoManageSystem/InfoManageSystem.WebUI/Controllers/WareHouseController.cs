@@ -8,6 +8,7 @@ using InfoManageSystem.Domain.Entities;
 
 namespace InfoManageSystem.WebUI.Controllers
 {
+    [Authorize]
     public class WareHouseController : Controller
     {
         private IGoodsService goodService;
@@ -112,7 +113,10 @@ namespace InfoManageSystem.WebUI.Controllers
         [HttpPost]
         public JsonResult UpdateGoodsStorage(int wareHouseId,int goodsId,int quantity)
         {
-            return null;
+            bool isUpdateSuccess = wareHouseService.UpdateGoodsStorage(wareHouseId, goodsId, quantity);
+            return Json(isUpdateSuccess);
         }
+
+
     }
 }

@@ -90,12 +90,12 @@
                 {
                     return;
                 }
-                row[field] = oldValue;
                 $.ajax({
                     type: "post",
                     url: "/Dealers/UpdateDealers",
                     data: { Dealers: row },
                     dataType: 'JSON',
+                    
                     success: function (data, status) {
                         if (data.result = true && status == "success") {
                             toastr.success('编辑成功！');

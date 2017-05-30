@@ -18,7 +18,7 @@ namespace InfoManageSystem.TestService
         private ICategoryService categoryService;
         public GoodsTest()
         {
-            goodsService = new GoodsService(new EFGoodsRespository());
+      //      goodsService = new GoodsService(new EFGoodsRespository());
             categoryService = new CategoryService(new EFCategoryRepository());
             //
             //TODO:  在此处添加构造函数逻辑

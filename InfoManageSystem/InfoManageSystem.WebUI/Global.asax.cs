@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Optimization;
 using InfoManageSystem.WebUI.App_Start;
+using System.Web.Http;
 
 namespace InfoManageSystem.WebUI
 {
@@ -14,6 +15,7 @@ namespace InfoManageSystem.WebUI
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

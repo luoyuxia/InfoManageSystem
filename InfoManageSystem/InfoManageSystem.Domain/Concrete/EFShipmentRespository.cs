@@ -10,6 +10,15 @@ namespace InfoManageSystem.Domain.Concrete
     public class EFShipmentRespository : IShipmentRespository
     {
         private EFDbContext context = new EFDbContext();
+
+        public IQueryable<ShipmentItem> ShipmentItem
+        {
+            get
+            {
+                return context.ShipmentItem.AsQueryable();
+            }
+        }
+
         public IQueryable<ShipmentList> ShipmentList
         {
             get

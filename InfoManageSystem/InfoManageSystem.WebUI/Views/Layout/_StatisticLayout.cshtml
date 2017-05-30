@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/css/toastr.css" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datetimepicker.min.css" />
+    <script src="~/Content/js/echarts.common.min.js"></script>
+    <script src="~/Content/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Content/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    @Styles.Render("~/Content/boostrap-select")
+    @Scripts.Render("~/bundles/bootstrap-select")
+</head>
+<body>
+     @RenderBody()
+    <script type="text/javascript">
+        $(function()
+        {
+            initDatePicker();
+        });
+        function initDatePicker() {
+            $('.datepicker').datetimepicker({
+                format: 'yyyy-mm-dd',
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            }).on('show', function () {
+                $(".icon-arrow-left").addClass("glyphicon-arrow-left");
+                $(".icon-arrow-right").addClass("glyphicon-arrow-right");
+            });
+            $('.monthpicker').datetimepicker({
+                format: 'yyyy-mm',
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 3,
+                minView: 3,
+                forceParse: 0
+            }).on('show', function () {
+                $(".icon-arrow-left").addClass("glyphicon-arrow-left");
+                $(".icon-arrow-right").addClass("glyphicon-arrow-right");
+            });
+        }
+    </script>
+</body>
+</html>

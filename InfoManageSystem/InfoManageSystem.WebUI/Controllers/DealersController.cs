@@ -8,6 +8,7 @@ using InfoManageSystem.Service.IService;
 
 namespace InfoManageSystem.WebUI.Controllers
 {
+    [Authorize]
     public class DealersController : Controller
     {
         private IDealersService dealersService;
