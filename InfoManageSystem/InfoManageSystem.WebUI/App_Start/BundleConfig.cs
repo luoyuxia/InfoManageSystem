@@ -42,6 +42,15 @@ namespace InfoManageSystem.WebUI.App_Start
                 "~/Content/js/bootstrap-datetimepicker.min.js",
                 "~/Content/js/bootstrap-datetimepicker.zh-CN.js"
                 ));
+
+            bundles.Add(new StyleBundle("~/Content/boostrap-select").Include(
+                "~/Content/css/bootstrap-select.min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-select").Include(
+                "~/Content/js/bootstrap-select.min.js",
+                "~/Content/js/defaults-zh_CN.min.js"
+                ));
         
         }
     }

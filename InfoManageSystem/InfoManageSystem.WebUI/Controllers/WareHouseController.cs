@@ -8,6 +8,7 @@ using InfoManageSystem.Domain.Entities;
 
 namespace InfoManageSystem.WebUI.Controllers
 {
+    [Authorize]
     public class WareHouseController : Controller
     {
         private IGoodsService goodService;

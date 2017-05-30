@@ -8,6 +8,7 @@ using InfoManageSystem.Service.IService;
 
 namespace InfoManageSystem.WebUI.Controllers
 {
+    [Authorize]
     public class WarningController : Controller
     {
         private IWarningService warningService;

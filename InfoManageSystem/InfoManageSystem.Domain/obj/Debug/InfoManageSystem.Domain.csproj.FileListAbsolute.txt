@@ -19,3 +19,5 @@ E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\Info
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\obj\Debug\InfoManageSystem.Domain.Migrations.addshipmentitemreference.resources
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\obj\Debug\InfoManageSystem.Domain.Migrations.AddWarning.resources
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\obj\Debug\InfoManageSystem.Domain.Migrations.AddWarning1.resources
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\bin\Debug\InfoManageSystem.ViewModel.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Domain\bin\Debug\InfoManageSystem.ViewModel.pdb

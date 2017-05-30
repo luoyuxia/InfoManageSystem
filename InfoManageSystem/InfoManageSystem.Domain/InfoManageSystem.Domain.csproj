@@ -65,6 +65,8 @@
     <Compile Include="Abstract\IDealersRespository.cs" />
     <Compile Include="Abstract\IGoodsRespository.cs" />
     <Compile Include="Abstract\IShipmentRespository.cs" />
+    <Compile Include="Abstract\IStatisticInfoRespository.cs" />
+    <Compile Include="Abstract\IUserRespository.cs" />
     <Compile Include="Abstract\IWareHouseRespository.cs" />
     <Compile Include="Abstract\IWareHousingListRespository.cs" />
     <Compile Include="Abstract\IWarningRespository.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFGoodsRespository.cs" />
     <Compile Include="Concrete\EFShipmentRespository.cs" />
+    <Compile Include="Concrete\EFStatisticInfoRespository.cs" />
+    <Compile Include="Concrete\EFUserRespository.cs" />
     <Compile Include="Concrete\EFWareHouseRespository.cs" />
     <Compile Include="Concrete\EFWareHousingListRespository.cs" />
     <Compile Include="Concrete\EFWarningRespository.cs" />
@@ -118,6 +122,10 @@
     <ProjectReference Include="..\InfoManageSystem.Util\InfoManageSystem.Util.csproj">
       <Project>{7b0f8c03-7352-433e-9dd2-5e9ef7b087dc}</Project>
       <Name>InfoManageSystem.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoManageSystem.ViewModel\InfoManageSystem.ViewModel.csproj">
+      <Project>{4ef72c09-7e8d-4e2d-b831-8509c879258f}</Project>
+      <Name>InfoManageSystem.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

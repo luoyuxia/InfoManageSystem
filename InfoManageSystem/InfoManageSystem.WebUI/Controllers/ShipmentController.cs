@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 
 namespace InfoManageSystem.WebUI.Controllers
 {
+    [Authorize]
     public class ShipmentController : Controller
     {
         private IWareHouseService wareHouseService;

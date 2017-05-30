@@ -60,6 +60,12 @@ namespace InfoManageSystem.WebUI.Infrastructure
 
             kernel.Bind<IWarningRespository>().To<EFWarningRespository>();
             kernel.Bind<IWarningService>().To<WarningService>();
+
+            kernel.Bind<IStatisticInfoRespository>().To<EFStatisticInfoRespository>();
+            kernel.Bind<IStatisticInfoService>().To<StatisticInfoService>();
+
+            kernel.Bind<IUserRespository>().To<EFUserRespository>();
+            kernel.Bind<IUserService>().To<UserService>();
         }
     }
 }

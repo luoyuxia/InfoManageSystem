@@ -9,6 +9,7 @@ using InfoManageSystem.Service.IService;
 namespace InfoManageSystem.WebUI.Controllers
 {
 
+    [Authorize]
     public class CategoryController : Controller
     {
         private ICategoryService categoryService;

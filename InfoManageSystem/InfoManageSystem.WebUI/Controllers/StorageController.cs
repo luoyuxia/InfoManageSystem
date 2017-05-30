@@ -9,6 +9,7 @@ using System.Threading;
 
 namespace InfoManageSystem.WebUI.Controllers
 {
+    [Authorize]
     public class StorageController : Controller
     {
         private IWareHousingListService wareHousingListService;

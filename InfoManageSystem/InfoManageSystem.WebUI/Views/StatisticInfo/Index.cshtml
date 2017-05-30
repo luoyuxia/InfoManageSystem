@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_StatisticLayout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-6">
+        <!-- AREA CHART -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">类别销售比例</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <div class="dateSelect">
+                    <input id="typeStartDate" readonly type="text" placeholder="开始日期" class="datepicker" />
+                    <input id="typeEndDate"  readonly type="text" placeholder="结束日期" class="datepicker"/>
+                    <a id="typeSearchBtn" class="btn bg-orange">统计</a>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="chart">
+                    <div id="typePieChart" style="height:250px"></div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <div class="col-md-6">
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">类别进货比例</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <div class="dateSelect">
+                    <input id="typeWareHousingStartDate" readonly type="text" placeholder="开始日期" class="datepicker" />
+                    <input id="typeWareHousingEndDate" readonly type="text" placeholder="结束日期" class="datepicker" />
+                    <a id="typeWarehousingSearchBtn" class="btn bg-orange">统计</a>
+                </div>
+            </div>
+            <div class="box-body">
+                <div id="typeWareHousingPieChart" style="height:250px"></div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">畅销商品</h3>
+                <input id="goodsSaleStartDate" readonly type="text" placeholder="开始日期" class="datepicker" />
+                <input id="goodsSaleEndDate" readonly type="text" placeholder="结束日期" class="datepicker" />
+                <select id="selectRanking" class="selectpicker col-md-2 show-menu-arrow">
+                    <option value="5">前5名</option>
+                    <option value="10">前10名</option>
+                    <option value="20">前20名</option>
+                </select>
+                <a id="goodsSaleBtn" class="btn bg-orange">统计</a>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>   
+            </div>
+            <div class="box-body">
+                <div id="goodsChart" style="height:300px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.selectpicker').selectpicker({
+        style: 'btn-info',
+        size: 3
+    });
+</script>
+<script type="text/javascript">
+    $("#typeSearchBtn").click(function()
+    {
+        searchTypeData();
+    }
+    );
+
+    function searchTypeData()
+    {
+        var typePieChart = echarts.init(document.getElementById("typePieChart"));
+        var startDate = $("#typeStartDate").val();
+        var endDate = $("#typeEndDate").val();
+        if(endDate<startDate)
+        {
+            toastr.error("日期输入有误！");
+            return;
+        }
+        $.ajax({
+            type: "Post",
+            url: "/StatisticInfo/TypeStatistic",
+            data: {
+                startDate: startDate,
+                endDate: endDate
+            },
+            success: function (data, status) {
+                showPie(data, typePieChart,'按销售数量','按销售金额');
+            }
+        });
+        typePieChart.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+    }
+
+    function showPie(data,typePieChart,title1,title2)
+    {
+        var byQuantityList = [];
+        var byMoneyList = [];
+        for(var i=0;i<data.length;i++)
+        {
+            var quantity = { value: data[i].totalQuantity, name: data[i].GoodsType };
+            byQuantityList.push(quantity);
+            var byMoney = { value: data[i].totalMoney, name: data[i].GoodsType };
+            byMoneyList.push(byMoney);
+        }
+        typePieChart.hideLoading();
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            series: [
+                {
+                    name: title1,
+                    type: 'pie',
+                    selectedMode: 'single',
+                    radius: [0, '50%'],
+
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                position: 'inner'
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    data: byQuantityList
+                },
+                {
+                    name: title2,
+                    type: 'pie',
+                    radius: ['60%', '80%'],
+
+                    data: byMoneyList
+                }
+            ]
+        };
+        typePieChart.setOption(option);
+    }
+</script>
+<script type="text/javascript">
+    $('#typeWarehousingSearchBtn').click(function () {
+        searchTypeWareHousing();
+    });
+    function searchTypeWareHousing()
+    {
+        var startDate = $('#typeWareHousingStartDate').val();
+        var endDate = $('#typeWareHousingEndDate').val();
+        if (endDate < startDate)
+            toastr.error("日期选择有误");
+        var chart = echarts.init(document.getElementById("typeWareHousingPieChart"));
+        $.ajax({
+            type: 'Post',
+            url: '/StatisticInfo/TypeWareHousing',
+            data: {
+                startDate: startDate,
+                endDate : endDate
+            },
+            success:function(data,status)
+            {
+                showPie(data, chart, '按进货数量', '按进货金额');
+            }
+        });
+        chart.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+    }
+    
+</script>
+<script type="text/javascript">
+    $("#goodsSaleBtn").click(function () {
+        searchGoodsSale();
+
+    });
+    function searchGoodsSale()
+    {
+        var startDate = $("#goodsSaleStartDate").val();
+        var endDate = $("#goodsSaleEndDate").val();
+        if (endDate < startDate)
+        {
+            toastr.error("日期选择有误！");
+            return;
+        }
+        var goodsChart = echarts.init(document.getElementById("goodsChart"))
+        $.ajax({
+            type: 'Post',
+            url: '/StatisticInfo/GoodsSaleStatistic',
+            data:{
+                startDate:startDate,
+                endDate: endDate,
+                top: $("#selectRanking").val()
+            },
+            success:function(data,status)
+            {
+                showGoodsSale(data, goodsChart);
+            }
+        });
+        goodsChart.showLoading({
+            text: '正在努力加载数据中......'
+        });
+    }
+    function showGoodsSale(data,chart)
+    {
+        var goodsName = [];
+        var goodsSaleQuantity = [];
+        for(var i = 0;i<data.length;i++)
+        {
+            goodsName.push(data[i].GoodsName);
+            goodsSaleQuantity.push(data[i].TotalQuantity);
+        }
+        chart.hideLoading();
+        var option = {
+            color: ['#3398DB'],
+            title1: {
+                text: '商品的销售排行',
+                subtext: '按销售数量'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            legend: {
+                data: ['销量']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: goodsName,
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    "name": "销量",
+                    "type": "bar",
+                    "data": goodsSaleQuantity
+                }
+            ]
+        };
+        chart.setOption(option);
+    }
+</script>
+

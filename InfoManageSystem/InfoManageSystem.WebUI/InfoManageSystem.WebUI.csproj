@@ -206,6 +206,7 @@
     <Content Include="Content\bootstrap-table\tableExport.js" />
     <Content Include="Content\css\AdminLTE.min.css" />
     <Content Include="Content\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\css\bootstrap-select.min.css" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\easyui.css" />
@@ -252,9 +253,13 @@
     <Content Include="Content\js\app.min.js" />
     <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
     <Content Include="Content\js\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Content\js\bootstrap-select.min.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\closable-tab-div.js" />
+    <Content Include="Content\js\defaults-zh_CN.min.js" />
     <Content Include="Content\js\demo.js" />
+    <Content Include="Content\js\echarts-all.js" />
+    <Content Include="Content\js\echarts.common.min.js" />
     <Content Include="Content\js\fastclick.min.js" />
     <Content Include="Content\js\ga.js" />
     <Content Include="Content\js\jquery-2.2.3.min.js" />
@@ -278,7 +283,9 @@
     <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShipmentController.cs" />
+    <Compile Include="Controllers\StatisticInfoController.cs" />
     <Compile Include="Controllers\StorageController.cs" />
+    <Compile Include="Controllers\UserHelper.cs" />
     <Compile Include="Controllers\WareHouseController.cs" />
     <Compile Include="Controllers\WarningController.cs" />
     <Compile Include="Controllers\WSController.cs" />
@@ -296,7 +303,7 @@
     </Content>
     <Content Include="Views\Layout\_BasicLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Management.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -307,7 +314,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Views\Home\PersonalInfo.cshtml" />
-    <Content Include="Views\Home\EasyUI.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Content\js\toastr.min.js" />
     <Content Include="Views\Layout\_iFrameLayout.cshtml" />
@@ -320,6 +326,11 @@
     <Content Include="Views\Shipment\Query.cshtml" />
     <Content Include="Views\Storage\Query.cshtml" />
     <Content Include="Views\Layout\_iFrameQueryLayout.cshtml" />
+    <Content Include="Views\StatisticInfo\Index.cshtml" />
+    <Content Include="Views\Layout\_StatisticLayout.cshtml" />
+    <Content Include="Views\StatisticInfo\DealersStatistic.cshtml" />
+    <Content Include="Views\StatisticInfo\SaleStatistic.cshtml" />
+    <Content Include="Views\Home\login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -345,6 +356,10 @@
     <ProjectReference Include="..\InfoManageSystem.Util\InfoManageSystem.Util.csproj">
       <Project>{7b0f8c03-7352-433e-9dd2-5e9ef7b087dc}</Project>
       <Name>InfoManageSystem.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoManageSystem.ViewModel\InfoManageSystem.ViewModel.csproj">
+      <Project>{4ef72c09-7e8d-4e2d-b831-8509c879258f}</Project>
+      <Name>InfoManageSystem.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

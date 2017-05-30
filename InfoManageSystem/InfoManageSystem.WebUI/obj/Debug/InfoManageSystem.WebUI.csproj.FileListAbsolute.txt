@@ -88,3 +88,5 @@ E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\Info
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.WebUI\bin\System.Net.Http.Formatting.xml
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.WebUI\bin\System.Web.Http.xml
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.WebUI\bin\System.Web.Http.WebHost.xml
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.WebUI\bin\InfoManageSystem.ViewModel.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.WebUI\bin\InfoManageSystem.ViewModel.pdb
