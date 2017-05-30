@@ -279,6 +279,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CheckCodeController.cs" />
     <Compile Include="Controllers\DealersController.cs" />
     <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -342,6 +343,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Chat\" />
+    <Folder Include="Views\CheckCode\" />
     <Folder Include="Views\Warning\" />
   </ItemGroup>
   <ItemGroup>
