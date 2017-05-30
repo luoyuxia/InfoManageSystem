@@ -14,3 +14,5 @@ E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\Info
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\obj\Debug\InfoManageSystem.Service.csprojResolveAssemblyReference.cache
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\obj\Debug\InfoManageSystem.Service.dll
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\obj\Debug\InfoManageSystem.Service.pdb
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\InfoManageSystem.ViewModel.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Service\bin\Debug\InfoManageSystem.ViewModel.pdb

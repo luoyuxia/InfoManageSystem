@@ -65,26 +65,34 @@
     <Compile Include="Abstract\IDealersRespository.cs" />
     <Compile Include="Abstract\IGoodsRespository.cs" />
     <Compile Include="Abstract\IShipmentRespository.cs" />
+    <Compile Include="Abstract\IStatisticInfoRespository.cs" />
+    <Compile Include="Abstract\IUserRespository.cs" />
     <Compile Include="Abstract\IWareHouseRespository.cs" />
     <Compile Include="Abstract\IWareHousingListRespository.cs" />
+    <Compile Include="Abstract\IWarningRespository.cs" />
     <Compile Include="Concrete\EFDealerRepository.cs" />
     <Compile Include="Concrete\EFCategoryRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFGoodsRespository.cs" />
     <Compile Include="Concrete\EFShipmentRespository.cs" />
+    <Compile Include="Concrete\EFStatisticInfoRespository.cs" />
+    <Compile Include="Concrete\EFUserRespository.cs" />
     <Compile Include="Concrete\EFWareHouseRespository.cs" />
     <Compile Include="Concrete\EFWareHousingListRespository.cs" />
+    <Compile Include="Concrete\EFWarningRespository.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Dealers.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Goods.cs" />
     <Compile Include="Entities\GoodsStorage.cs" />
     <Compile Include="Entities\GoodsStorageInfo.cs" />
+    <Compile Include="Entities\QueryModel.cs" />
     <Compile Include="Entities\ShipmentItem.cs" />
     <Compile Include="Entities\ShipmentList.cs" />
     <Compile Include="Entities\WareHouse.cs" />
     <Compile Include="Entities\WareHousingItem.cs" />
     <Compile Include="Entities\WareHousingList.cs" />
+    <Compile Include="Entities\Warning.cs" />
     <Compile Include="Migrations\201705220559365_init db.cs" />
     <Compile Include="Migrations\201705220559365_init db.Designer.cs">
       <DependentUpon>201705220559365_init db.cs</DependentUpon>
@@ -92,6 +100,14 @@
     <Compile Include="Migrations\201705221114135_add shipmentitem reference.cs" />
     <Compile Include="Migrations\201705221114135_add shipmentitem reference.Designer.cs">
       <DependentUpon>201705221114135_add shipmentitem reference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705251058178_Add-Warning.cs" />
+    <Compile Include="Migrations\201705251058178_Add-Warning.Designer.cs">
+      <DependentUpon>201705251058178_Add-Warning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705251100014_Add-Warning-1.cs" />
+    <Compile Include="Migrations\201705251100014_Add-Warning-1.Designer.cs">
+      <DependentUpon>201705251100014_Add-Warning-1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +123,10 @@
       <Project>{7b0f8c03-7352-433e-9dd2-5e9ef7b087dc}</Project>
       <Name>InfoManageSystem.Util</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InfoManageSystem.ViewModel\InfoManageSystem.ViewModel.csproj">
+      <Project>{4ef72c09-7e8d-4e2d-b831-8509c879258f}</Project>
+      <Name>InfoManageSystem.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
@@ -117,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705221114135_add shipmentitem reference.resx">
       <DependentUpon>201705221114135_add shipmentitem reference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705251058178_Add-Warning.resx">
+      <DependentUpon>201705251058178_Add-Warning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705251100014_Add-Warning-1.resx">
+      <DependentUpon>201705251100014_Add-Warning-1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

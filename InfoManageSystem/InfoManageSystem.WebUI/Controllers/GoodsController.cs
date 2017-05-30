@@ -7,6 +7,7 @@ using InfoManageSystem.Domain.Entities;
 using InfoManageSystem.Service.IService;
 namespace InfoManageSystem.WebUI.Controllers
 {
+    [Authorize]
     public class GoodsController : Controller
     {
         private IGoodsService goodsService;

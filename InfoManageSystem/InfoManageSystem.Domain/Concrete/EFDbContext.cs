@@ -26,5 +26,6 @@ namespace InfoManageSystem.Domain.Concrete
         public virtual DbSet<WareHousingItem> WareHousingItem { get; set; }
         public virtual DbSet<ShipmentList> ShipmentList { get; set; }
         public virtual DbSet<ShipmentItem> ShipmentItem { get; set; }
+        public virtual DbSet<Warning> Warning { get; set; }
     }
 }

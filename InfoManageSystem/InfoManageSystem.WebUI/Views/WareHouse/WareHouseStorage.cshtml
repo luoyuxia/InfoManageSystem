@@ -85,7 +85,7 @@
                     data: { warehouseId: row.WareHouseId, goodsId: row.GoodsId, quantity: row.Quantity },
                     dataType: 'JSON',
                     success: function (data, status) {
-                        if (status == "success" && data.result == true) {
+                        if (status == "success" && data == true) {
                             toastr.success('编辑成功！');
                         }
                         else {

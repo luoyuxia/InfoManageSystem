@@ -1,0 +1,5 @@
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\bin\Debug\InfoManageSystem.ViewModel.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\bin\Debug\InfoManageSystem.ViewModel.pdb
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\obj\Debug\InfoManageSystem.ViewModel.csprojResolveAssemblyReference.cache
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\obj\Debug\InfoManageSystem.ViewModel.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\obj\Debug\InfoManageSystem.ViewModel.pdb

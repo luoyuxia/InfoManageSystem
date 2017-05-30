@@ -24,19 +24,20 @@
                             <!-- Menu toggle button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
+                                <span class="label label-warning warningNums"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
+                                <li class="header">你有 <span class="warningNums">0</span>条提醒</li>
                                 <li>
                                     <!-- Inner Menu: contains the notifications -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- start notification -->
+                                    <ul class="menu" id="warningList">
+                            <!--         <li>
+                                            <!-- start notification 
                                             <a href="#">
                                                 <i class="fa fa-users text-aqua"></i> 5 new members joined today
                                             </a>
                                         </li>
+                                -->   
                                         <!-- end notification -->
                                     </ul>
                                 </li>
@@ -48,9 +49,9 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="~/Content/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <img src="@Url.Content("~/Content/img/"+ViewBag.Avatar)" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">罗宇侠</span>
+                                <span id="username" class="hidden-xs">@ViewBag.username</span>
                             </a>
                         </li>
                         <li class="notifications-menu">
@@ -60,7 +61,7 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <ul class="menu">
-                                        <li><a href="#"><i class="fa fa-sign-out"></i>退出登录</a></li>
+                                        <li><a href="@Url.Action("LogOut")"><i class="fa fa-sign-out"></i>退出登录</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -119,11 +120,11 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/">入库查询</a></li>
-                            <li><a href="#">出库查询</a></li>
-                            <li><a href="#">客户进货情况</a></li>
-                            <li><a href="#">仓库商品清单</a></li>
-                            <li><a href="#">商品销售排行</a></li>
+                            <li><a id="WareHousingQuery" href="#">入库查询</a></li>
+                            <li><a id="ShipmentQuery" href="#">出库查询</a></li>
+                            <li><a id="DealersStatistic" href="#">客户进货情况</a></li>
+                            <li><a id="SaleStatistic" href="#">销售统计</a></li>
+                            <li><a id="StatisticInfo" href="#">统计信息</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -141,11 +142,48 @@
                 </div>
             </section>
         </div> 
+        <div ></div>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
+    <script type="text/javascript">
+        $(function(){
+            $.get("/Warning/GetWarnings", function (data) {
+                displayWarning(data);
+            });
+            var username = "@ViewBag.username";
+            ws = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '/api/WS?user=' + username);
+            ws.onmessage = function (result) {
+                warnings = JSON.parse(result.data);
+                displayWarning(warnings);
+            }
+
+            function displayWarning(warnings) {
+                var warningNums = $(".warningNums");
+                warningNums.html("");
+                if (warnings.length > 0)
+                    warningNums.html(warnings.length);
+                var warningList = $("#warningList");
+                warningList.html("");
+                for (var i = 0; i < warnings.length; i++) {
+                    var warning = $("<li><a href = '#' data-toggle='tooltip' data-placement='right' title ='其编号为" +
+                        warnings[i].GoodsId + ",现存货量为" + warnings[i].CurrentStorage + ",其最低存货为" + warnings[i].MinStorage
+                        + "'>"
+                        + "<i class=fa  fa-warning text-yellow>"
+                        + warnings[i].GoodName + " 存货不足" + "</i></a></li>"
+                        );
+                    warningList.append(warning);
+                    /*        var warning = $("<li><a href='#'><i class=fa  fa-warning text-yellow>"
+                                + "编号为 " + data[i].GoodsId + " 的 " + data[i].GoodName + " 的存货不足，其现存货为"
+                                + data[i].CurrentStorage + ",其最低存货为" + data[i].MinStorage
+                                + "</i></a></li>")*/
+
+                }
+            }
+        })   
+    </script>
     <script type="text/javascript">
         $(".sidebar-menu li").click(function () {
             $(".sidebar-menu li").removeClass("active");
@@ -184,6 +222,42 @@
                 'iframe': true
             };
             changeFramwHeight(closableTab.addTab(item));
+        });
+
+        $("#WareHousingQuery").click(function () {
+            var item = {
+                'id': 'WareHousingQuery', 'name': '入库查询', 'url': '/Storage/Query', 'closable': true,
+                'iframe': true
+            };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#ShipmentQuery").click(function () {
+            var item = {
+                'id': 'ShipmentQuery', 'name': '出库查询', 'url': '/Shipment/Query', 'closable': true,
+                'iframe': true
+            };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#StatisticInfo").click(function () {
+            var item = {
+                'id': 'StatisticInfo', 'name': '统计信息', 'url': '/StatisticInfo', 'closable': true,
+                'iframe': false
+            };
+            closableTab.addTab(item);
+        });
+        $('#DealersStatistic').click(function () {
+            var item = {
+                'id': 'DealersStatistic', 'name': '客户进货情况', 'url': '/StatisticInfo/DealersStatistic',
+                'closable': true, 'iframe': false
+            };
+            closableTab.addTab(item);
+        });
+        $('#SaleStatistic').click(function () {
+            var item = {
+                'id': 'SaleStatistic', 'name': '销售统计', 'url': '/StatisticInfo/SaleStatistic',
+                'closable': true, 'iframe': false
+            };
+            closableTab.addTab(item);
         });
         function changeFramwHeight(frameId)
         {

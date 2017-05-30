@@ -22,5 +22,7 @@ namespace InfoManageSystem.Service.IService
         //判断某个仓库的某件商品是否有足够的库存
         bool HasEnoughGoods(int wareHouseId, int goodsId, int quantity);
 
+        //更新某件商品在仓库的库存
+        bool UpdateGoodsStorage(int wareHouseId, int goodsId, int quantity);
     }
 }

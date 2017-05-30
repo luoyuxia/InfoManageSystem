@@ -54,5 +54,19 @@ namespace InfoManageSystem.Service.Service
             int totalQuantity = wareHouse.GoodsStorages.Where(s => s.GoodsId == goodsId).Sum(s => s.Quantity);
             return totalQuantity >= quantity;
         }
+
+        public bool UpdateGoodsStorage(int wareHouseId, int goodsId, int quantity)
+        {
+            if (quantity < 0)
+                return false;
+            GoodsStorage goodsStorage = wareHouseRespository.GoodsStorage.Where(p => p.GoodsId == goodsId && p.WareHouseId == wareHouseId).FirstOrDefault();
+            if(goodsStorage!=null)
+            {
+                goodsStorage.Quantity = quantity;
+                wareHouseRespository.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

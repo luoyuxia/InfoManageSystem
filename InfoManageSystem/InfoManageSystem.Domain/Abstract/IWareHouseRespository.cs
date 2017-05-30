@@ -9,7 +9,7 @@ namespace InfoManageSystem.Domain.Abstract
 {
     public interface IWareHouseRespository
     {
-       IQueryable<WareHouse> WareHouse { get; }
+        IQueryable<WareHouse> WareHouse { get; }
 
         IQueryable<GoodsStorage> GoodsStorage { get; }
 
@@ -18,5 +18,8 @@ namespace InfoManageSystem.Domain.Abstract
         bool SaveWareHosue(WareHouse wareHouse);
 
         bool DeleteWareHouse(int  wareHouseId);
+
+        //保存更改
+        void SaveChanges();
     }
 }

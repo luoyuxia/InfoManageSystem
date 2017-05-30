@@ -12,5 +12,7 @@ namespace InfoManageSystem.Domain.Abstract
         IQueryable<ShipmentList> ShipmentList { get; }
         bool SaveShipmentList(ShipmentList shipmentList);
 
+        IQueryable<ShipmentItem> ShipmentItem { get; }
+
     }
 }

@@ -10,5 +10,9 @@ namespace InfoManageSystem.Service.IService
     public interface IWareHousingListService
     {
         bool SaveWareHousingList(WareHousingList wareHousingList);
+
+        IEnumerable<WareHousingList> GetAllShipmentByPage(QueryModel queryModel,out int total);
+
+        IEnumerable<WareHousingItem> GetWareHousingItems(int wareHousingId);
     }
 }

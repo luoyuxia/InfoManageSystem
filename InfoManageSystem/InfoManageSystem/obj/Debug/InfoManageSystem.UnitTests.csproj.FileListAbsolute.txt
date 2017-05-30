@@ -57,3 +57,11 @@ E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\Info
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\System.Web.Optimization.dll
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\InfoManageSystem.Service.pdb
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\System.Web.Optimization.xml
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\System.Web.Http.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\System.Web.Http.WebHost.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\Newtonsoft.Json.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\System.Net.Http.Formatting.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\System.Web.Http.xml
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\System.Web.Http.WebHost.xml
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\Newtonsoft.Json.xml
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem\bin\Debug\System.Net.Http.Formatting.xml
