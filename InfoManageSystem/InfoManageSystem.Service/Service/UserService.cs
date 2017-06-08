@@ -19,5 +19,19 @@ namespace InfoManageSystem.Service.Service
         {
             return userRespository.Employee.Where(e => e.Account == account && e.Password == password).FirstOrDefault();
         }
+
+        public bool saveEmployee(Employee e)
+        {
+            return userRespository.SaveEmployee(e);
+        }
+
+        public bool updateEmployeePassword(int employeeId, string password)
+        {
+            Employee e = userRespository.Employee.FirstOrDefault(p => p.Id == employeeId);
+            if (e == null)
+                return false;
+            e.Password = password;
+           return userRespository.SaveEmployee(e);
+        }
     }
 }

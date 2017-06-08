@@ -23,5 +23,18 @@ namespace InfoManageSystem.Domain.Concrete
         {
             return context.Employee.Find(id);
         }
+
+        public bool SaveEmployee(Employee e)
+        {
+            Employee entity = context.Employee.Find(e.Id);
+            if (entity == null)
+                context.Employee.Add(entity);
+            else
+            {
+                context.Entry(entity).CurrentValues.SetValues(e);
+            }
+            context.SaveChanges();
+            return true;
+        }
     }
 }

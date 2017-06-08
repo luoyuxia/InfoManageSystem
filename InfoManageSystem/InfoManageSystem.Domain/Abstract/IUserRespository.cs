@@ -11,5 +11,7 @@ namespace InfoManageSystem.Domain.Abstract
         Employee getEmployeeById(int id);
 
         IQueryable<Employee> Employee { get;  }
+
+        bool SaveEmployee(Employee e);
     }
 }

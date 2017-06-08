@@ -1,4 +1,5 @@
-﻿<body class="hold-transition  skin-blue sidebar-mini">
+﻿@model InfoManageSystem.Domain.Entities.Employee
+<body class="hold-transition  skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
 
@@ -49,9 +50,9 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="@Url.Content("~/Content/img/"+ViewBag.Avatar)" class="user-image" alt="User Image">
+                                <img src="@Url.Content("~/Content/img/"+@Model.Avatar)" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span id="username" class="hidden-xs">@ViewBag.username</span>
+                                <span id="username" class="hidden-xs">@Model.Name</span>
                             </a>
                         </li>
                         <li class="notifications-menu">
@@ -74,7 +75,7 @@
             <section class="sidebar">
                 <ul class="sidebar-menu">
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
+                    <li class="active"><a id="PersonalInfo" href="#"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-edit"></i><span>商品管理</span>
@@ -185,10 +186,21 @@
         })   
     </script>
     <script type="text/javascript">
+       
         $(".sidebar-menu li").click(function () {
             $(".sidebar-menu li").removeClass("active");
             $(this).addClass("active");
         });
+
+        $('#PersonalInfo').click(function () {
+            var item = {
+                'id': 'PersonalInfo', 'name': '个人中心', 'url': '/Home/PersonalInfo', 'closable': false,
+                'iframe': false
+            };
+            closableTab.addTab(item);
+        });
+        $('#PersonalInfo').click();
+
 
         $("#GoodsType").click(function () {
             var item = { 'id': 'Category', 'name': '商品类别', 'url': '/Category', 'closable': true, 'iframe': true };

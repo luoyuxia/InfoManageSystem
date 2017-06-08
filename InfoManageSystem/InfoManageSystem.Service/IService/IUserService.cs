@@ -10,5 +10,9 @@ namespace InfoManageSystem.Service.IService
     public interface IUserService
     {
         Employee getEmployeeByAccount(string account, string password);
+
+        bool saveEmployee(Employee e);
+
+        bool updateEmployeePassword(int employeeId, string password);
     }
 }

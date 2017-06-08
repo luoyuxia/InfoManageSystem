@@ -256,6 +256,7 @@
     <Content Include="Content\js\bootstrap-select.min.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\closable-tab-div.js" />
+    <Content Include="Content\js\cropbox-min.js" />
     <Content Include="Content\js\defaults-zh_CN.min.js" />
     <Content Include="Content\js\demo.js" />
     <Content Include="Content\js\echarts-all.js" />

@@ -19,5 +19,15 @@ namespace InfoManageSystem.WebUI.Controllers
             }
             return "";
         }
+
+   /*     public static bool SetUserData(string userData)
+        {
+            if(HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                FormsIdentity id = HttpContext.Current.User.Identity as FormsIdentity;
+                FormsAuthenticationTicket ticket = id.Ticket;
+                ticket.UserData  = 
+            }
+        }*/
     }
 }
