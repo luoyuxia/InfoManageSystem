@@ -51,6 +51,9 @@ namespace InfoManageSystem.WebUI.App_Start
                 "~/Content/js/bootstrap-select.min.js",
                 "~/Content/js/defaults-zh_CN.min.js"
                 ));
+
+
+            BundleTable.EnableOptimizations = false;
         
         }
     }

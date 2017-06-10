@@ -17,6 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoManageSystem.ViewModel"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32Lib", "Win32Lib\Win32Lib.vcxproj", "{EB8CA259-1408-404D-9DAD-7B2A55D0E449}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C427385-BA02-41BA-B3CB-AED980771095}"
+	ProjectSection(SolutionItems) = preProject
+		发布说明.txt = 发布说明.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

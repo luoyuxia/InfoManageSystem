@@ -1,0 +1,4 @@
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\bin\Release\InfoManageSystem.ViewModel.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\bin\Release\InfoManageSystem.ViewModel.pdb
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\obj\Release\InfoManageSystem.ViewModel.dll
+E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.ViewModel\obj\Release\InfoManageSystem.ViewModel.pdb

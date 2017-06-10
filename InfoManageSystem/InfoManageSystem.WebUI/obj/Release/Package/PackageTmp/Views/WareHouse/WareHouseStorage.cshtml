@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "WareHouseStorage";
+    Layout = "~/Views/Layout/_iFrameLayout.cshtml";
+    ViewBag.tableName = "tb_warehouseStorage";
+}
+<script>
+    $("#toolbar").remove();
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#tb_warehouseStorage").bootstrapTable({
+            dataType: 'json',
+            contentType: "application/x-www-form-urlencoded",
+            idField: "Id",
+            method: 'GET',
+            search:true,
+            pagination: true,
+            showRefresh: true,
+            clickToSelect: true,
+            cache: false,
+            striped: true,
+            sidePagination: "server",
+            showColumns: true,
+            pagination: true,
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 25, 50, 100],
+            uniqueId: "Id",
+            showExport: true,
+            exportDataType: 'all',
+            queryParams: queryParams,
+            responseHandler: responseHandler,
+            url: "/WareHouse/GetGoodsWareHouseStorage",
+            height: 450,
+            columns: [{
+                checkbox: true
+            },
+            {
+                field: 'Id',
+                title: '编号',
+                formatter: function (value, row, index) {
+                    return index + 1;
+                }
+            },
+            {
+                field: 'GoodsId',
+                title:'商品编号'
+            },
+            {
+                field: "GoodsName",
+                title: "商品名称",
+            },
+            {
+                field:"WareHouseId",
+                title:"仓库编号"
+            },
+            {
+                field:'WareHouseName',
+                title:"仓库名称"
+            },
+            {
+                field:'WareHouseAddress',
+                title:'仓库地址'
+            },
+            {
+                field:'Quantity',
+                title:'仓库库存',
+                editable:{
+                    type: 'text',
+                    title: '仓库库存',
+                    validate:function(v)
+                    {
+                        var r = /^\d+$/;
+                        if (!r.test(v))
+                            return "仓库库存必须是整数";
+                    }
+                }
+            }],
+            onEditableSave: function (field, row, oldValue, $el) {
+                $("#tb_warehouseStorage").bootstrapTable("resetView");
+                $.ajax({
+                    type: "post",
+                    url: "/WareHouse/UpdateGoodsStorage",
+                    data: { warehouseId: row.WareHouseId, goodsId: row.GoodsId, quantity: row.Quantity },
+                    dataType: 'JSON',
+                    success: function (data, status) {
+                        if (status == "success" && data == true) {
+                            toastr.success('编辑成功！');
+                        }
+                        else {
+                            toastr.error('编辑失败,请稍后重试！');
+                        }
+                    },
+                    error: function () {
+                        toastr.error('编辑失败,请稍后重试！');
+                    },
+                    complete: function () {
+
+                    }
+                });
+            }
+        });
+    });
+    function queryParams(params) {
+        var param = {
+            name: $(".search input").val(),
+            pageindex: this.pageNumber,
+            pageSize: this.pageSize
+        }
+        return param;
+    }
+    function responseHandler(res) {
+        if (res) {
+            return {
+                "rows": res.rows,
+                "total": res.total
+            };
+        } else {
+            return {
+                "rows": [],
+                "total": 0
+            };
+        }
+    }
+</script>
+

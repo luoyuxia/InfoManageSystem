@@ -1,0 +1,294 @@
+﻿@model InfoManageSystem.Domain.Entities.Employee
+<body class="hold-transition  skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+
+            <!-- Logo -->
+            <a id="test" href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>W</b>M</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>仓库管理</b>系统</span>
+            </a>
+
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Notifications Menu -->
+                        <li class="dropdown notifications-menu">
+                            <!-- Menu toggle button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning warningNums"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">你有 <span class="warningNums">0</span>条提醒</li>
+                                <li>
+                                    <!-- Inner Menu: contains the notifications -->
+                                    <ul class="menu" id="warningList">
+                            <!--         <li>
+                                            <!-- start notification 
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                -->   
+                                        <!-- end notification -->
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="@Url.Content("~/Content/img/"+@Model.Avatar)" class="user-image" alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span id="username" class="hidden-xs">@Model.Name</span>
+                            </a>
+                        </li>
+                        <li class="notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-gears"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <ul class="menu">
+                                        <li><a href="@Url.Action("LogOut")"><i class="fa fa-sign-out"></i>退出登录</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <!-- Optionally, you can add icons to the links -->
+                    <li class="active"><a id="PersonalInfo" href="#"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-edit"></i><span>商品管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a id="GoodsType" href="#">商品类别</a></li>
+                            <li><a id="Goods" href="#">所有商品</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-inbox"></i><span>仓库管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a id="WareHouse" href="#">仓库详情</a></li>
+                            <li><a id="WareHouseStorage" href="#">商品库存</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-truck"></i><span>进/出货</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a id="Storage" href="#">商品入库</a></li>
+                            <li><a id="Shipment" href="#">商品出库</a></li>
+                        </ul>
+                    </li>
+                    <li><a id="Dealers" href="#"><i class="fa fa-users"></i> <span>客户管理</span></a></li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-search-plus"></i> <span>信息查询</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a id="WareHousingQuery" href="#">入库查询</a></li>
+                            <li><a id="ShipmentQuery" href="#">出库查询</a></li>
+                            <li><a id="DealersStatistic" href="#">客户进货情况</a></li>
+                            <li><a id="SaleStatistic" href="#">销售统计</a></li>
+                            <li><a id="StatisticInfo" href="#">统计信息</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div id="mainContent" class="content-wrapper">
+            <section id="content" class="content">
+                <!-- Your Page Content Here -->
+                <div class="row" style="margin-top:-10px;">
+                    <ul class="nav nav-tabs" role="tablist" style="font-size:1.2em;">
+                    </ul>
+                    <div id="tabContent" class="tab-content" style="width:100%; height:100%">
+                    </div>
+                </div>
+            </section>
+        </div> 
+        <div ></div>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $.get("/Warning/GetWarnings", function (data) {
+                displayWarning(data);
+            });
+            var username = "@ViewBag.username";
+            ws = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '/api/WS?user=' + username);
+            ws.onmessage = function (result) {
+                warnings = JSON.parse(result.data);
+                displayWarning(warnings);
+            }
+
+            function displayWarning(warnings) {
+                var warningNums = $(".warningNums");
+                warningNums.html("");
+                if (warnings.length > 0)
+                    warningNums.html(warnings.length);
+                var warningList = $("#warningList");
+                warningList.html("");
+                for (var i = 0; i < warnings.length; i++) {
+                    var warning = $("<li><a href = '#' data-toggle='tooltip' data-placement='right' title ='其编号为" +
+                        warnings[i].GoodsId + ",现存货量为" + warnings[i].CurrentStorage + ",其最低存货为" + warnings[i].MinStorage
+                        + "'>"
+                        + "<i class=fa  fa-warning text-yellow>"
+                        + warnings[i].GoodName + " 存货不足" + "</i></a></li>"
+                        );
+                    warningList.append(warning);
+                    /*        var warning = $("<li><a href='#'><i class=fa  fa-warning text-yellow>"
+                                + "编号为 " + data[i].GoodsId + " 的 " + data[i].GoodName + " 的存货不足，其现存货为"
+                                + data[i].CurrentStorage + ",其最低存货为" + data[i].MinStorage
+                                + "</i></a></li>")*/
+
+                }
+            }
+        })   
+    </script>
+    <script type="text/javascript">
+       
+        $(".sidebar-menu li").click(function () {
+            $(".sidebar-menu li").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        $('#PersonalInfo').click(function () {
+            var item = {
+                'id': 'PersonalInfo', 'name': '个人中心', 'url': '/Home/PersonalInfo', 'closable': false,
+                'iframe': false
+            };
+            closableTab.addTab(item);
+        });
+        $('#PersonalInfo').click();
+
+
+        $("#GoodsType").click(function () {
+            var item = { 'id': 'Category', 'name': '商品类别', 'url': '/Category', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+
+        $("#Goods").click(function () {
+            var item = { 'id': 'Goods', 'name': '所有商品', 'url': '/Goods', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+
+        $("#WareHouse").click(function () {
+            var item = {'id':'WareHosue','name':'仓库详情','url':'/WareHouse','closable':true,'iframe':true};
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#Storage").click(function () {
+            var item = { 'id': 'Storage', 'name': '商品入库', 'url': '/Storage', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#Dealers").click(function () {
+            var item = { 'id': 'Dealers', 'name': '客户管理', 'url': '/Dealers', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#Shipment").click(function () {
+            var item = { 'id': 'Shipment', 'name': '商品出库', 'url': '/Shipment', 'closable': true, 'iframe': true };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#WareHouseStorage").click(function () {
+            var item = {
+                'id': 'WareHouseStorage', 'name': '商品库存', 'url': '/WareHouse/WareHouseStorage', 'closable': true,
+                'iframe': true
+            };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+
+        $("#WareHousingQuery").click(function () {
+            var item = {
+                'id': 'WareHousingQuery', 'name': '入库查询', 'url': '/Storage/Query', 'closable': true,
+                'iframe': true
+            };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#ShipmentQuery").click(function () {
+            var item = {
+                'id': 'ShipmentQuery', 'name': '出库查询', 'url': '/Shipment/Query', 'closable': true,
+                'iframe': true
+            };
+            changeFramwHeight(closableTab.addTab(item));
+        });
+        $("#StatisticInfo").click(function () {
+            var item = {
+                'id': 'StatisticInfo', 'name': '统计信息', 'url': '/StatisticInfo', 'closable': true,
+                'iframe': false
+            };
+            closableTab.addTab(item);
+        });
+        $('#DealersStatistic').click(function () {
+            var item = {
+                'id': 'DealersStatistic', 'name': '客户进货情况', 'url': '/StatisticInfo/DealersStatistic',
+                'closable': true, 'iframe': false
+            };
+            closableTab.addTab(item);
+        });
+        $('#SaleStatistic').click(function () {
+            var item = {
+                'id': 'SaleStatistic', 'name': '销售统计', 'url': '/StatisticInfo/SaleStatistic',
+                'closable': true, 'iframe': false
+            };
+            closableTab.addTab(item);
+        });
+        function changeFramwHeight(frameId)
+        {
+            var ifm = document.getElementById(frameId);
+            if (ifm == undefined)
+                return;
+            ifm.onload = function () {
+                var subWeb = document.frames ? document.frames[frameId].document : ifm.contentDocument;
+                var ele = document.getElementById("mainContent");
+                var mainContentHeight = $("#mainContent").height();
+                if (ifm != null && subWeb != null) {
+                    ifm.height = subWeb.body.scrollHeight;
+                    if(ifm.height < mainContentHeight)
+                    {
+                        ifm.height = mainContentHeight;
+                    }
+               }
+                   
+            };
+        }
+    </script>
+</body>

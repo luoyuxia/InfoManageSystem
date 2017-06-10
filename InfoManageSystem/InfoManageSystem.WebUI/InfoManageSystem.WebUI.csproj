@@ -333,6 +333,7 @@
     <Content Include="Views\StatisticInfo\DealersStatistic.cshtml" />
     <Content Include="Views\StatisticInfo\SaleStatistic.cshtml" />
     <Content Include="Views\Home\login.cshtml" />
+    <None Include="Properties\PublishProfiles\InfoManageSystem.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

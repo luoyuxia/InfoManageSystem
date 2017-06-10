@@ -1,0 +1,16 @@
+﻿  stdafx.cpp
+  dllmain.cpp
+  md5_encode.cpp
+md5_encode.cpp(64): warning C4244: “初始化”: 从“double”转换到“unsigned int”，可能丢失数据
+md5_encode.cpp(84): warning C4244: “初始化”: 从“double”转换到“unsigned int”，可能丢失数据
+md5_encode.cpp(105): warning C4244: “初始化”: 从“double”转换到“unsigned int”，可能丢失数据
+md5_encode.cpp(126): warning C4244: “初始化”: 从“double”转换到“unsigned int”，可能丢失数据
+md5_encode.cpp(186): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  Win32Lib.cpp
+    正在创建库 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\x64\Release\Win32Lib.lib 和对象 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\x64\Release\Win32Lib.exp
+  正在生成代码
+e:\a_大学学习\课程项目\netproject\infomanagesystem\infomanagesystem\win32lib\win32lib.cpp(23): warning C4172: 返回局部变量或临时变量的地址: wc
+  All 102 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  Win32Lib.vcxproj -> E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\x64\Release\Win32Lib.dll
+  Win32Lib.vcxproj -> E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\x64\Release\Win32Lib.pdb (Full PDB)

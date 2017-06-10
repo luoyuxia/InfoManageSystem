@@ -19,26 +19,26 @@ namespace InfoManageSystem.Service.Service
 
         public IEnumerable<DealersStatistic> getDealersShipmentRecordBySlot(int dealersId,DateTime startDate, DateTime endDate)
         {
-            string sql = "SELECT DealersId as DealersId,dealers.Name as DealersName " +
-                        ", DATE_FORMAT(shipmentlist.ShipmentTime, '%Y-%m') as DateSlot " +
-                        ",sum(shipmentlist.TotalPrice)" +
-                        " as TotalMoney FROM shipmentlist, dealers" +
-                        " WHERE shipmentlist.ShipmentTime>=@p1 AND shipmentlist.ShipmentTime<@p2 AND" 
-                        +" shipmentlist.DealersId = @p0 AND shipmentlist.DealersId = dealers.Id" +
-                        " GROUP BY DATE_FORMAT(shipmentlist.ShipmentTime, '%Y-%m'); ";
+            string sql = "SELECT DealersId as DealersId,Dealers.Name as DealersName " +
+                        ", DATE_FORMAT(ShipmentList.ShipmentTime, '%Y-%m') as DateSlot " +
+                        ",sum(ShipmentList.TotalPrice)" +
+                        " as TotalMoney FROM ShipmentList, Dealers" +
+                        " WHERE ShipmentList.ShipmentTime>=@p1 AND ShipmentList.ShipmentTime<@p2 AND"
+                        + " ShipmentList.DealersId = @p0 AND ShipmentList.DealersId = Dealers.Id" +
+                        " GROUP BY DATE_FORMAT(ShipmentList.ShipmentTime, '%Y-%m'); ";
             object[] myParams = { dealersId, startDate, endDate };
             return respository.countDealersStatistic(sql, myParams);
         }
 
         public IEnumerable<DealersStock> getDealersStockStatistic(DateTime startDate, DateTime endDate, int top = 10)
         {
-            string sql = "SELECT dealers.Id as DealersId " +
-                        ", dealers.Name as DealersName " +
-                        ",sum(shipmentlist.TotalPrice) as TotalMoney " +
-                        " FROM shipmentlist, dealers" +
-                        " WHERE shipmentlist.ShipmentTime >= @p0 AND shipmentlist.ShipmentTime < @p1" +
-                        " AND shipmentlist.DealersId = dealers.Id " +
-                        " GROUP BY dealers.Id,dealers.Name " +
+            string sql = "SELECT Dealers.Id as DealersId " +
+                        ", Dealers.Name as DealersName " +
+                        ",sum(ShipmentList.TotalPrice) as TotalMoney " +
+                        " FROM ShipmentList, Dealers" +
+                        " WHERE ShipmentList.ShipmentTime >= @p0 AND ShipmentList.ShipmentTime < @p1" +
+                        " AND ShipmentList.DealersId = Dealers.Id " +
+                        " GROUP BY Dealers.Id,Dealers.Name " +
                         " ORDER BY TotalMoney DESC LIMIT 0,@p2; ";
             object[] myParams = { startDate, endDate, top };
             return respository.countDealersStock(sql, myParams);
@@ -46,14 +46,14 @@ namespace InfoManageSystem.Service.Service
 
         public IEnumerable<GoodsSale> getGoodsSaleStatistic(DateTime startDate, DateTime endDate, int top = 10)
         {
-            string sql = "SELECT goods.Id as GoodsId,goods.Name as GoodsName,"+
-                    " sum(shipmentitem.Quantity) as TotalQuantity," + 
-                    " sum(shipmentitem.Quantity * shipmentitem.SellPrice) as TotalSaleMoney " + 
-                    " FROM shipmentitem, shipmentlist, goods " +
-                    " WHERE shipmentlist.ShipmentTime >= @p0 AND shipmentlist.ShipmentTime < @p1" +
-                    " AND  goods.Id = shipmentitem.GoodsId "+ 
-                    " AND shipmentitem.ShipmentList_Id = shipmentlist.Id"+
-                    " GROUP BY goods.Id,goods.Name "+
+            string sql = "SELECT Goods.Id as GoodsId,Goods.Name as GoodsName," +
+                    " sum(ShipmentItem.Quantity) as TotalQuantity," +
+                    " sum(ShipmentItem.Quantity * ShipmentItem.SellPrice) as TotalSaleMoney " +
+                    " FROM ShipmentItem, ShipmentList, Goods " +
+                    " WHERE ShipmentList.ShipmentTime >= @p0 AND ShipmentList.ShipmentTime < @p1" +
+                    " AND  Goods.Id = ShipmentItem.GoodsId " +
+                    " AND ShipmentItem.ShipmentList_Id = ShipmentList.Id" +
+                    " GROUP BY Goods.Id,Goods.Name " +
                     " ORDER BY TotalQuantity DESC LIMIT 0, @p2 ; ";
             object[] myParams = { startDate, endDate, top };
             return respository.countGoodsSale(sql, myParams);
@@ -61,48 +61,48 @@ namespace InfoManageSystem.Service.Service
 
         public IEnumerable<SaleDate> getSaleStatisticInfoByDay(DateTime startDate, DateTime endDate)
         {
-            string sql = "SELECT DATE_FORMAT(shipmentlist.ShipmentTime,'%Y-%m-%d') " +
-                        " as Date, sum(shipmentlist.TotalPrice) as TotalMoney " +
-                        " FROM shipmentlist " +
-                        " WHERE shipmentlist.ShipmentTime >=@p0 AND  shipmentlist.ShipmentTime <@p1" +
-                        " GROUP BY DATE_FORMAT(shipmentlist.ShipmentTime, '%Y-%m-%d'); ";
+            string sql = "SELECT DATE_FORMAT(ShipmentList.ShipmentTime,'%Y-%m-%d') " +
+                        " as Date, sum(ShipmentList.TotalPrice) as TotalMoney " +
+                        " FROM ShipmentList " +
+                        " WHERE ShipmentList.ShipmentTime >=@p0 AND  ShipmentList.ShipmentTime <@p1" +
+                        " GROUP BY DATE_FORMAT(ShipmentList.ShipmentTime, '%Y-%m-%d'); ";
             object[] myParams = { startDate, endDate };
             return respository.countSaleDateStatistic(sql, myParams);
         }
 
         public IEnumerable<SaleDate> getSaleStatisticInfoByMonth(DateTime startDate, DateTime endDate)
         {
-            string sql = "SELECT DATE_FORMAT(shipmentlist.ShipmentTime,'%Y-%m') " +
-                        " as Date, sum(shipmentlist.TotalPrice) as TotalMoney " +
-                        " FROM shipmentlist " +
-                        " WHERE shipmentlist.ShipmentTime >=@p0 AND  shipmentlist.ShipmentTime <@p1" +
-                        " GROUP BY DATE_FORMAT(shipmentlist.ShipmentTime, '%Y-%m'); ";
+            string sql = "SELECT DATE_FORMAT(ShipmentList.ShipmentTime,'%Y-%m') " +
+                        " as Date, sum(ShipmentList.TotalPrice) as TotalMoney " +
+                        " FROM ShipmentList " +
+                        " WHERE ShipmentList.ShipmentTime >=@p0 AND  ShipmentList.ShipmentTime <@p1" +
+                        " GROUP BY DATE_FORMAT(ShipmentList.ShipmentTime, '%Y-%m'); ";
             object[] myParams = { startDate, endDate };
             return respository.countSaleDateStatistic(sql, myParams);
         }
 
         public IEnumerable<TypeQuantity> getTypeQuantityByDate(DateTime startDate, DateTime endDate)
         {
-            string sql = "SELECT category.Name as GoodsType,sum(shipmentitem.Quantity) as totalQuantity" +
-                        ",sum(shipmentitem.SellPrice * shipmentitem.Quantity) as totalMoney" +
-                        " FROM shipmentlist, shipmentitem, goods, category " +
-                        " WHERE shipmentlist.ShipmentTime >= @p0 AND shipmentlist.ShipmentTime < @p1 " +
-                        " and shipmentitem.Id = shipmentitem.ShipmentList_Id" +
-                        " AND shipmentitem.GoodsId = goods.Id and goods.CategoryId = category.Id" +
-                        " GROUP BY category.Id,category.Name; ";
+            string sql = "SELECT Category.Name as GoodsType,sum(ShipmentItem.Quantity) as totalQuantity" +
+                        ",sum(ShipmentItem.SellPrice * ShipmentItem.Quantity) as totalMoney" +
+                        " FROM ShipmentList, ShipmentItem, Goods, Category " +
+                        " WHERE ShipmentList.ShipmentTime >= @p0 AND ShipmentList.ShipmentTime < @p1 " +
+                        " and ShipmentItem.Id = ShipmentItem.ShipmentList_Id" +
+                        " AND ShipmentItem.GoodsId = Goods.Id and Goods.CategoryId = Category.Id" +
+                        " GROUP BY Category.Id,Category.Name; ";
             object[] myparams = { startDate, endDate };
             return respository.countTypeQuantity(sql, myparams);
         }
 
         public IEnumerable<TypeQuantity> getTypeWareHousingStatistic(DateTime startDate, DateTime endDate)
         {
-            string sql = "SELECT category.Name as GoodsType,sum(warehousingitem.Quantity) as totalQuantity" +
-                        ",sum(warehousingitem.PurchasePrice * warehousingitem.Quantity) as totalMoney" +
-                        " FROM category,warehousinglist,warehousingitem,goods " +
-                        " WHERE warehousinglist.WareHousingTime >= @p0 AND warehousinglist.WareHousingTime < @p1 " +
-                        " and category.Id = goods.CategoryId " +
-                        " AND warehousinglist.Id = warehousingitem.WareHousingList_Id and warehousingitem.GoodsId = goods.Id " +
-                        " GROUP BY category.Id,category.Name; ";
+            string sql = "SELECT Category.Name as GoodsType,sum(WareHousingItem.Quantity) as totalQuantity" +
+                        ",sum(WareHousingItem.PurchasePrice * WareHousingItem.Quantity) as totalMoney" +
+                        " FROM Category,WareHousingList,WareHousingItem,Goods " +
+                        " WHERE WareHousingList.WareHousingTime >= @p0 AND WareHousingList.WareHousingTime < @p1 " +
+                        " and Category.Id = Goods.CategoryId " +
+                        " AND WareHousingList.Id = WareHousingItem.WareHousingList_Id and WareHousingItem.GoodsId = Goods.Id " +
+                        " GROUP BY Category.Id,Category.Name; ";
             object[] myParams = { startDate, endDate };
             return respository.countTypeQuantity(sql, myParams);
         }

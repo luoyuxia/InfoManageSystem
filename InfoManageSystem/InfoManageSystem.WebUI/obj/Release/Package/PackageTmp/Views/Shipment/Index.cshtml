@@ -1,0 +1,318 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_iFrameLayout.cshtml";
+    ViewBag.tableName = "tb_shipment";
+}
+
+<link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+<div class="row" style="margin-left:40px; margin-top:10px;margin-bottom:10px;">
+    总价: <span><i class="fa fa-cny"></i></span> <span id="price"></span>
+    <span  style="margin-left:50px">
+        <i class="fa fa-user"></i>  经销商:  <a href="#" id="dealers"></a>
+    </span>
+</div>
+<script type="text/javascript">
+    $.fn.editable.defaults.mode = 'popup';
+    $('#dealers').editable({
+        type: 'select',
+        title: '经销商',
+        placement: 'right',
+        value: 0,
+        source: function () {
+            var result = [];
+            $.ajax({
+                url: "/Dealers/GetAllDealers",
+                type: "Get",
+                async: false,
+                success: function (data, status) {
+                    $.each(data, function (key, value) {
+                        result.push({ value: value.Id, text: value.Title });
+                    });
+                }
+            });
+            return result;
+        }
+        
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#tb_shipment").bootstrapTable({
+            contentType: "application/x-www-form-urlencoded",
+            toolbar: "#toolbar",
+            idField: "Id",
+            method: 'GET',
+            clickToSelect: true,
+            cache: false,
+            striped: true,
+            showColumns: true,
+            uniqueId: "Id",
+            showExport: true,
+            exportDataType: 'all',
+            height: 450,
+            columns: [{
+                checkbox: true
+            },
+            {
+                field: "Id",
+                title: "出货项编号"
+            },
+            {
+                field: "GoodsId",
+                title: "商品编号",
+                editable: {
+                    type: "text",
+                    title: "商品编号",
+                    validate: function (v) {
+                        if (isNaN(v))
+                            return "请输入整数";
+                        var error = "";
+                        $.ajax({
+                            url: '/Goods/HasGoods',
+                            async: false,
+                            type: "get",
+                            data: { GoodsId: v },
+                            success: function (data, status) {
+                                if (data == false) {
+
+                                    error = "不存在这样的商品";
+                                }
+                            },
+                            error: function () {
+                                error = "数据有误"
+                            }
+                        });
+                        if (error != "") {
+                            return error;
+                        }
+                    }
+                }
+            },
+            {
+                field: "Name",
+                title: "进货商品",
+                editable: {
+                    type: 'select',
+                    title: '进货商品',
+                    source: function () {
+                        var result = [];
+                        $.ajax({
+                            url: '/Goods/GetGoodsInfo',
+                            async: false,
+                            type: "get",
+                            data: {},
+                            success: function (data, status) {
+                                $.each(data, function (key, value) {
+                                    result.push({ value: value.Id, text: value.Title });
+                                });
+                            }
+                        });
+                        return result;
+                    }
+                }
+            },
+            {
+                field: "SellPrice",
+                title: "售价",
+                editable: {
+                    type: 'text',
+                    title: '售价',
+                    validate: function (v) {
+                        var r = /^\d+(\.\d{1,2})?$/
+                        if (!r.test(v))
+                            return "请输入两位以内的小数";
+                    }
+                }
+            },
+            {
+                field: "WareHouseId",
+                title: "出货仓库",
+                editable: {
+                    type: 'select',
+                    title: '出货仓库',
+                    source: function () {
+                        var result = [];
+                        $.ajax({
+                            url: '/WareHouse/GetWareHouseInfo',
+                            async: false,
+                            type: "get",
+                            data: {},
+                            success: function (data, status) {
+                                $.each(data, function (key, value) {
+                                    result.push({ value: value.Id, text: value.Title });
+                                });
+                            }
+                        });
+                        return result;
+                    }
+                }
+            },
+            {
+                field: "Quantity",
+                title: "出货数量",
+                editable: {
+                    type: "text",
+                    title: "出货数量",
+                    validate: function (v) {
+                        var r = /^\d+$/;
+                        if (!r.test(v))
+                            return "商品进货数量必须是整数";
+                    }
+                }
+            }
+            ],
+
+            onEditableSave: function (field, row, oldValue, $el) {
+                $("#tb_shipment").bootstrapTable("resetView");
+                //同步修改进货项的商品编号和商品名称
+                if (field == "GoodsId" || field == "Name") {
+                    if (field == "GoodsId")
+                        row.Name = row.GoodsId;
+                    else
+                        row.GoodsId = row.Name;
+                    //得到商品的价格
+                    $.ajax({
+                        url: "Goods/GetSingleGoods?GoodsId=" + row.GoodsId,
+                        async: false,
+                        success: function (data, status) {
+                            row.SellPrice = data.SellPrice;
+                        }
+                    });  
+                    $("#tb_shipment").bootstrapTable('updateRow', { index: row.Id, row: row })
+                }
+                if (field == "SellPrice" || field == "Quantity")
+                    updatePrice();
+            }
+        });
+    });
+    var table = $("#tb_shipment");
+    var add_button = $("#btn_add");
+    var nextItemId = 1;
+    add_button.click(function () {
+        table.bootstrapTable("insertRow", { index: 0, row: { Id: nextItemId, GoodsId: "", Name: "", SellPrice: "", WareHouseId: "", Quantity: "" } });
+        nextItemId = nextItemId + 1;
+    });
+
+    var del_button = $("#btn_delete");
+    del_button.click(function () {
+        var rowSelected = table.bootstrapTable('getSelections');
+        toRemoveItemId = [];
+        for (var i = 0; i < rowSelected.length; i++) {
+            toRemoveItemId.push(rowSelected[i].Id);
+        };
+        table.bootstrapTable('remove', { field: 'Id', values: toRemoveItemId });
+    });
+
+    var dealers = $("#dealers");
+    var save_button = $("#btn_save");
+    save_button.click(function () {
+        table.bootstrapTable('checkAll');
+        var rowSelected = table.bootstrapTable('getSelections');
+        var dealersId = dealers.editable('getValue', true);
+        if (dealersId <= 0)
+        {
+            toastr.error("请选择经销商！");
+            return;
+        }
+        //检查数据是否完整
+        for (var i = 0; i < rowSelected.length; i++) {
+            row = rowSelected[i];
+            for (var key in row) {
+                if (row[key] == "") {
+                    toastr.error("存在无效的数据，请进行检查！");
+                    table.bootstrapTable('uncheckAll');
+                    return;
+                }
+            }
+        };
+
+        //检查仓库是否有余货
+        for(var i=0;i<rowSelected.length;i++)
+        {
+            row = rowSelected[i];
+            var canShipment = false;
+            $.ajax({
+                url: "Shipment/CanShipmentFromWarehouse",
+                type: "Post",
+                async: false,
+                data: { goodId: row.GoodsId, wareHouseId: row.WareHouseId, quantity: row.Quantity },
+                success:function(data,status)
+                {
+                    canShipment = data.canShipment;
+                }
+            });
+            if(canShipment!=true)
+            {
+                toastr.error("出货项 " + row.Id + " 有误，请确认仓库有足够的存货！");
+                return;
+            }
+        }
+
+        //进行出库
+
+        $.ajax({
+            url: "/Shipment/Shipment",
+            type: "Post",
+            data: { shipmentItemList: rowSelected, dealerId: dealersId },
+            success:function(data,status)
+            {
+                if(status=="success" && data==true)
+                {                    
+                    dealers.editable("setValue", 0);
+                    table.bootstrapTable('removeAll');
+                    priceArea.text("");
+                    toastr.success("出货成功! ");
+                }
+                else
+                {
+                    toastr.error("出货失败！请稍后再试！")
+                }
+            },
+            error:function()
+            {
+                toastr.error("出货失败！请稍后再试！")
+            }
+        });
+    });
+
+    var priceArea = $("#price");
+    function updatePrice() {
+        var totalPrice = 0;
+        var data = table.bootstrapTable("getData", { useCurrentPage: true });
+        for (var i = 0; i < data.length; i++) {
+            var row = data[i];
+            if (row.PurchasePrice != "" && row.Quantity != "") {
+                price = parseFloat(row.SellPrice);
+                quantity = parseFloat(row.Quantity);
+                totalPrice += price * quantity;
+            }
+        }
+        totalPrice = Math.round(totalPrice * 100) / 100.0;
+        priceArea.text(totalPrice);
+    }
+</script>
+
+<!--
+<span>经销商:</span>
+<a href="#" id="dealers"></a>
+<script type="text/javascript">
+    $.fn.editable.defaults.mode = 'popup';
+    $('#dealers').editable({
+        type: 'select',
+        title: '经销商',
+        placement: 'right',
+        value: 1,
+        source: [
+            { value: 1, text: 'status 1' },
+            { value: 2, text: 'status 2' },
+            { value: 3, text: 'status 3' }
+        ]
+        /*
+        //uncomment these lines to send data on server
+        ,pk: 1
+        ,url: '/post'
+        */
+    });
+</script>
+-->

@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_iFrameLayout.cshtml";
+    ViewBag.tableName = "tb_dealers";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#tb_dealers").bootstrapTable({
+            dataType:'json',
+            contentType: "application/x-www-form-urlencoded",
+            toolbar: "#toolbar",
+            idField: "Id",
+            method: 'GET',
+            pagination: true,
+            showRefresh: true,
+            search: true,
+            clickToSelect: true,
+            cache: false,
+            striped: true,
+            sidePagination: "server",
+            showColumns: true,
+            pagination: true,
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 25, 50, 100],
+            uniqueId: "Id",
+            showExport: true,
+            exportDataType: 'all',
+            queryParams:queryParams,
+            responseHandler: responseHandler,
+            url: "/Dealers/GetAllDealersPageable",
+            height: 450,
+            columns: [{
+                checkbox: true
+            },
+            {
+                field: "Id",
+                title: "客户编号"
+            },
+            {
+                field:"Name",
+                title: "客户名字",
+                editable: {
+                    type: 'text',
+                    title: '客户名字',
+                    validate: function (v) {
+                        if (!v) return '客户名字不能为空';
+
+                    }
+                }
+            },
+            {
+                field: "Address",
+                title: "客户地址",
+                editable: {
+                    type: 'text',
+                    title: '客户地址',
+                    validate: function (v) {
+                        if (!v) return '客户地址不能为空';
+                    }
+                }
+
+            },
+            {
+                field: "Phone",
+                title: "客户联系方式",
+                editable: {
+                    type: 'text',
+                    title: '客户联系方式',
+                    validate:function(v)
+                    {
+                        //手机号码
+                        var cellPhoneRe = /^1[3-8]\d{9}$/;
+                        //固定电话号码
+                        var fixPhoneRe = /\d{3}-\d{8}|\d{4}-\d{7}/;
+                        if (cellPhoneRe.test(v) == false && fixPhoneRe.test(v) == false)
+                            return "请输入正确的电话号码";
+                    }
+                }
+            }
+            ]
+            ,
+            onEditableSave: function (field, row, oldValue, $el) {
+                $("#tb_dealers").bootstrapTable("resetView");
+            //    row[field] = oldValue;
+                /*如果行数据的编号小于1的话，说明正在编辑新建的数据项，暂时不需要进行保存*/
+                if (row.Id < 0)
+                {
+                    return;
+                }
+                $.ajax({
+                    type: "post",
+                    url: "/Dealers/UpdateDealers",
+                    data: { Dealers: row },
+                    dataType: 'JSON',
+                    
+                    success: function (data, status) {
+                        if (data.result = true && status == "success") {
+                            toastr.success('编辑成功！');
+                        }
+                        else
+                        {
+                            toastr.error('编辑失败,请稍后重试！');
+                            $("#tb_dealers").bootstrapTable("updateRow", { index: row.Id, row: oldValue });
+                        }
+                    },
+                    error: function () {
+                        toastr.error('编辑失败,请稍后重试！');
+                        $("#tb_dealers").bootstrapTable("updateRow", { index: row.Id, row: oldValue });
+                    },
+                    complete: function () {
+                    }
+                });
+            },
+            onCheck: function () {
+                if (!canDelete()) {
+                    delButton.addClass("disabled");
+                }
+            },
+            onUncheck: function () {
+                if (canDelete()) {
+                    delButton.removeClass("disabled");
+                }
+            },
+            onCheckAll: function () {
+                if (!canDelete()) {
+                    delButton.addClass("disabled");
+                }
+            },
+            onUncheckAll: function () {
+                if (canDelete()) {
+                    delButton.removeClass("disabled");
+                }
+            }
+        });
+    });
+    function queryParams(params) {
+        var param = {
+            name:$(".search input").val(),
+            pageindex: this.pageNumber,
+            pageSize: this.pageSize
+        }
+        return param;
+    }
+    function responseHandler(res)
+    {
+        if (res) {
+            return {
+                "rows": res.rows,
+                "total": res.total
+            };
+        } else {
+            return {
+                "rows": [],
+                "total": 0
+            };
+        }
+    }
+
+    var table = $("#tb_dealers");
+    var delButton = $("#btn_delete");
+    delButton.click(function () {
+        if (!canDelete()) {
+            toastr.error("对不起，不能进行删除！");
+            return;
+        }
+        var rowSelected = table.bootstrapTable('getSelections');
+        if (rowSelected.length < 0)
+            return;
+        var delSuccess = false;
+        itemsId = [];
+        var negativeItemsId = [];
+        for (var i = 0; i < rowSelected.length; i++) {
+            if(rowSelected[i].Id<0){
+                negativeItemsId.push(rowSelected[i].Id);
+            }
+        }
+
+        //移除编号为负的行，即没有保存到数据库中的项
+        table.bootstrapTable('remove', { field: 'Id', values: negativeItemsId });
+        if (itemsId.length == 0)
+            return;
+    });
+    //判断能不能进行删除
+    function canDelete() {
+        var rowSelected = table.bootstrapTable('getSelections');
+        if (rowSelected.length == 0)
+            return false;
+        for (var i = 0; i < rowSelected.length; i++) {
+            if (rowSelected[i].Id > 0)
+                return false;
+        }
+        return true;
+    }
+
+    var addButton = $("#btn_add");
+    var nextItemId = -1;
+    addButton.click(function () {
+        table.bootstrapTable('insertRow', { index: 0, row: { Id: nextItemId, Name: "", Phone: "" ,Address:""} });
+        nextItemId = nextItemId - 1;
+    });
+
+
+    var saveButton = $("#btn_save");
+    saveButton.click(function () {
+        var rowSelected = table.bootstrapTable('getSelections');
+        var to_save_items = [];
+        for (var i = 0; i < rowSelected.length;i++)
+        {
+            row = rowSelected[i];
+            if (row.Id < 0)
+            {
+                //如果某行数据的某列无效，不进行保存
+                for(var column in row)
+                {
+                    if (row[column] == "") {
+                        toastr.error('数据有误！')
+                        return;
+                    }
+                }
+                to_save_items.push(row);
+            }
+        }
+        if(to_save_items.length == 0)
+        {
+            toastr.info("没有要进行保存的数据！");
+        }
+        else
+        {
+            $.ajax({
+                type: "Post",
+                url: "/Dealers/AddDealers",
+                data: {dealersList: to_save_items },
+                success:function(data)
+                {
+                    if (data.result) {
+                        toastr.success("数据保存成功！");
+                    }
+                    else {
+                        toastr.error("数据保存失败，请稍后重试！");
+                    }
+                    table.bootstrapTable('refresh', {});
+                },
+                error:function()
+                {
+                    toastr.error("数据保存失败，请稍后重试！");
+                    table.bootstrapTable('refresh', {});
+                }
+            });
+        }
+    });
+</script>
+
