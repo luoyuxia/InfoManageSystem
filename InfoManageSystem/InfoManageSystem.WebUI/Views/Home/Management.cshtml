@@ -78,14 +78,14 @@
                     <li class="active"><a id="PersonalInfo" href="#"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-edit"></i><span>商品管理</span>
+                            <i class="fa fa-edit"></i><span>货物管理</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a id="GoodsType" href="#">商品类别</a></li>
-                            <li><a id="Goods" href="#">所有商品</a></li>
+                            <li><a id="GoodsType" href="#">货物类别</a></li>
+                            <li><a id="Goods" href="#">所有货物</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -97,7 +97,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a id="WareHouse" href="#">仓库详情</a></li>
-                            <li><a id="WareHouseStorage" href="#">商品库存</a></li>
+                            <li><a id="WareHouseStorage" href="#">货物库存</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -108,8 +108,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a id="Storage" href="#">商品入库</a></li>
-                            <li><a id="Shipment" href="#">商品出库</a></li>
+                            <li><a id="Storage" href="#">货物入库</a></li>
+                            <li><a id="Shipment" href="#">货物出库</a></li>
                         </ul>
                     </li>
                     <li><a id="Dealers" href="#"><i class="fa fa-users"></i> <span>客户管理</span></a></li>
@@ -203,12 +203,12 @@
 
 
         $("#GoodsType").click(function () {
-            var item = { 'id': 'Category', 'name': '商品类别', 'url': '/Category', 'closable': true, 'iframe': true };
+            var item = { 'id': 'Category', 'name': '货物类别', 'url': '/Category', 'closable': true, 'iframe': true };
             changeFramwHeight(closableTab.addTab(item));
         });
 
         $("#Goods").click(function () {
-            var item = { 'id': 'Goods', 'name': '所有商品', 'url': '/Goods', 'closable': true, 'iframe': true };
+            var item = { 'id': 'Goods', 'name': '所有货物', 'url': '/Goods', 'closable': true, 'iframe': true };
             changeFramwHeight(closableTab.addTab(item));
         });
 
@@ -217,7 +217,7 @@
             changeFramwHeight(closableTab.addTab(item));
         });
         $("#Storage").click(function () {
-            var item = { 'id': 'Storage', 'name': '商品入库', 'url': '/Storage', 'closable': true, 'iframe': true };
+            var item = { 'id': 'Storage', 'name': '货物入库', 'url': '/Storage', 'closable': true, 'iframe': true };
             changeFramwHeight(closableTab.addTab(item));
         });
         $("#Dealers").click(function () {
@@ -225,12 +225,12 @@
             changeFramwHeight(closableTab.addTab(item));
         });
         $("#Shipment").click(function () {
-            var item = { 'id': 'Shipment', 'name': '商品出库', 'url': '/Shipment', 'closable': true, 'iframe': true };
+            var item = { 'id': 'Shipment', 'name': '货物出库', 'url': '/Shipment', 'closable': true, 'iframe': true };
             changeFramwHeight(closableTab.addTab(item));
         });
         $("#WareHouseStorage").click(function () {
             var item = {
-                'id': 'WareHouseStorage', 'name': '商品库存', 'url': '/WareHouse/WareHouseStorage', 'closable': true,
+                'id': 'WareHouseStorage', 'name': '货物库存', 'url': '/WareHouse/WareHouseStorage', 'closable': true,
                 'iframe': true
             };
             changeFramwHeight(closableTab.addTab(item));
