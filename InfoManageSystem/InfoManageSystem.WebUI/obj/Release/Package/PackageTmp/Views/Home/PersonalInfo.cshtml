@@ -1,0 +1,302 @@
+﻿@model InfoManageSystem.Domain.Entities.Employee
+@{ 
+    Layout = null;
+}
+<link rel="stylesheet" href="~/Content/css/bootstrap-datetimepicker.min.css" />
+<script src="~/Content/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Content/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="~/Content/js/cropbox-min.js"></script>
+<style>
+    .error{
+        border-color:red;
+    }
+    #tips span {float:right;
+                width: 40px !important;
+                height: 20px;
+                color: white;
+                background: green;
+                margin-right: 2px;
+                line-height: 20px;
+                text-align: center;
+            }
+.imageBox
+{
+    position: relative;
+    height: 400px;
+    width: 100%;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    box-sizing: border-box;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 400px;
+    background: rgba(0,0,0,0.7);
+}
+</style>
+<div class="container">
+    <div class="row">
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">个人中心</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <form id="modifyPersonalInfo" method="post" action="@Url.Action("PersonalInfo")">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="hidden" name="Account" value="@Model.Account" />
+                    <input type="hidden" name="Password" value="@Model.Password" />
+                    <input type="hidden" name="Avatar" value="@Model.Avatar" />
+                    <div class="form-group">
+                        <label for="username">你的名字</label>
+                        <input id ="name" name="Name" type="text" placeholder="请输入你的名字" class="form-control" id="username" value="@Model.Name" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">联系方式</label>
+                        <input id ="phone" name="Phone" type="tel" placeholder="请输入你的联系方式" value="@Model.Phone"
+                               class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="role">当前职务</label>
+                        <input name="Role" type="text" disabled value="@Model.Role" class="form-control"
+                               id="role" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bornDate">出生日期 </label>
+                        <input name="BirthDay" readonly class="form-control" type="text" value="@Model.BirthDay.ToString("yyyy-MM-dd")" id="datetimepicker">
+                    </div>
+                </form>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <span id="modifyButton" class="pull-right btn bg-orange">确认修改</span>
+            </div>
+            <!-- /.box-footer-->
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">密码修改</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <form id="updatePassword" action="@Url.Action("UpdatePassword")" method="post">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="hidden" name="account"  value="@Model.Account"/>
+                    <div class="form-group">
+                        <label for="newPassword">新密码</label>
+                        <input id="newPassword" class="form-control" type="password" name="newPassword" />
+                    </div>
+                    <div>
+                        <!--           <div class="form-inline"> -->
+
+                        <label>密码强度</label>
+                        <div id="tips" class="pull-right">
+                            <span></span><span></span><span></span><span></span>
+                        </div> 
+                    </div>
+          <!--          </div>-->
+                    <div class="form-group">
+                        <label for="confirmPassword">再次确认密码</label>
+                         <input id="confirmPassword" class="form-control" type="password" name="confirmPassword" />
+                    </div>    
+                </form>
+            </div>
+            <div class="box-footer">
+                <span id="modifyPassword" class="pull-right btn bg-purple">确认修改</span>
+            </div>
+        </div>
+     </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">头像上传</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collaspse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <form id="uploadImageForm" action="@Url.Action("UploadImage")" method="post">
+                        <input name="img" id="image" type="hidden" value="" />
+                    </form>
+                    <div class="imageBox">
+                        <div class="thumbBox">
+                        </div>
+                        <div class="spinner" style="display: none">
+                            Loading...
+                        </div>
+                    </div>
+                    <div class="action">
+                        <input type="file" id="file" style="float: left; width: 250px">
+                        <input class="btn bg-maroon" type="button" id="btnUpload" value="上传" style="float: right">
+                        <input class="btn bg-olive" type="button" id="btnZoomIn" value="+" style="float: right">
+                        <input class="btn bg-olive" type="button" id="btnZoomOut" value="-" style="float: right">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#datetimepicker').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        pickerPosition: "top-right"
+    }).on('show', function () {
+        $(".icon-arrow-left").addClass("glyphicon-arrow-left");
+        $(".icon-arrow-right").addClass("glyphicon-arrow-right");
+    });
+    $('#modifyButton').click(function () {
+        $("#name").removeClass("error");
+        $("#phone").removeClass("error");
+        if ($("#name").val() == "")
+        {
+            $("#name").addClass("error");
+            return;
+        }
+        var cellPhoneRe = /^1[3-8]\d{9}$/;
+        //固定电话号码
+        var fixPhoneRe = /\d{3}-\d{8}|\d{4}-\d{7}/;
+        var phone = $("#phone").val();
+        if (cellPhoneRe.test(phone) == false && fixPhoneRe.test(phone) == false)
+        {
+            $("#phone").addClass("error");
+            return;
+        }
+        $("#modifyPersonalInfo").submit();
+    });
+    $('#modifyPassword').click(function () {
+        $("#newPassword").removeClass("error");
+        if($("#newPassword").val() == "")
+        {
+            $("#newPassword").addClass("error");
+            return;
+        }
+        if($("#newPassword").val() != $("#confirmPassword").val())
+        {
+            toastr.error("前后密码不一致！");
+            return;
+        }
+        $("#updatePassword").submit();
+    });
+
+
+    var aStr = ["弱", "中", "强","超强"];
+    function checkStrong(val) {
+        var modes = 0;
+        if (val.length = 0)
+            return 1;
+        if (/\d/.test(val)) modes++; //数字
+        if (/[a-z]/.test(val)) modes++; //小写
+        if (/[A-Z]/.test(val)) modes++; //大写  
+        if (/\W/.test(val)) modes++; //特殊字符
+        if (val.length > 12) modes++;
+        return modes;
+    };
+    $("#newPassword").keyup(function () {
+        var val = $(this).val();
+        $("p").text(val.length);
+        var num = checkStrong(val);
+        switch (num) {
+            case 0:
+                $("#tips span").css('background', 'green').text('');
+            case 1:
+                $("#tips span").css('background', 'green').text('').eq(4 - num).css('background', 'red').text(aStr[num - 1]);
+                break;
+            case 2:
+                $("#tips span").css('background', 'green').text('').eq(4 - num).css('background', 'red').text(aStr[num - 1]);
+                break;
+            case 3:
+                $("#tips span").css('background', 'green').text('').eq(4 - num).css('background', 'red').text(aStr[num - 1]);
+                break;
+            case 4:
+                $("#tips span").css('background', 'green').text('').eq(4 - num).css('background', 'red').text(aStr[num - 1]);
+                break;
+            default:
+                $("#tips span").css('background', 'green').text('');
+        }
+    });
+</script>
+<script>
+    var options =
+    {
+        thumbBox: '.thumbBox',
+        spinner: '.spinner',
+        imgSrc: 'avatar.png'
+    }
+    var cropper = $('.imageBox').cropbox(options);
+    $('#file').on('change', function () {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            options.imgSrc = e.target.result;
+            cropper = $('.imageBox').cropbox(options);
+        }
+        reader.readAsDataURL(this.files[0]);
+        this.files = [];
+    })
+    $('#btnUpload').on('click', function () {
+        var img = cropper.getDataURL();
+        $("#image").val(img);
+        $("#uploadImageForm").submit();
+        
+   /*     $.ajax({
+            url: "/Home/UploadImage",
+            data:{img:img},
+            type:"Post"
+        });*/
+    })
+    $('#btnZoomIn').on('click', function () {
+        cropper.zoomIn();
+    })
+    $('#btnZoomOut').on('click', function () {
+        cropper.zoomOut();
+    })
+</script>

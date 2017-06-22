@@ -87,7 +87,7 @@ namespace InfoManageSystem.Service.Service
                         ",sum(ShipmentItem.SellPrice * ShipmentItem.Quantity) as totalMoney" +
                         " FROM ShipmentList, ShipmentItem, Goods, Category " +
                         " WHERE ShipmentList.ShipmentTime >= @p0 AND ShipmentList.ShipmentTime < @p1 " +
-                        " and ShipmentItem.Id = ShipmentItem.ShipmentList_Id" +
+                        " and ShipmentList.Id = ShipmentItem.ShipmentList_Id" +
                         " AND ShipmentItem.GoodsId = Goods.Id and Goods.CategoryId = Category.Id" +
                         " GROUP BY Category.Id,Category.Name; ";
             object[] myparams = { startDate, endDate };

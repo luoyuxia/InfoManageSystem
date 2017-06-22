@@ -28,19 +28,19 @@
       <publishTime>05/19/2017 00:09:33</publishTime>
     </File>
     <File Include="bin/InfoManageSystem.Domain.dll">
-      <publishTime>06/14/2017 11:37:17</publishTime>
+      <publishTime>06/21/2017 15:02:55</publishTime>
     </File>
     <File Include="bin/InfoManageSystem.Service.dll">
-      <publishTime>06/14/2017 11:37:17</publishTime>
+      <publishTime>06/22/2017 21:06:13</publishTime>
     </File>
     <File Include="bin/InfoManageSystem.Util.dll">
-      <publishTime>06/14/2017 11:37:16</publishTime>
+      <publishTime>06/20/2017 10:18:59</publishTime>
     </File>
     <File Include="bin/InfoManageSystem.ViewModel.dll">
-      <publishTime>06/10/2017 18:07:05</publishTime>
+      <publishTime>06/20/2017 10:09:19</publishTime>
     </File>
     <File Include="bin/InfoManageSystem.WebUI.dll">
-      <publishTime>06/14/2017 11:37:22</publishTime>
+      <publishTime>06/22/2017 21:06:19</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>05/19/2017 00:09:36</publishTime>
@@ -472,19 +472,19 @@
       <publishTime>05/19/2017 00:09:32</publishTime>
     </File>
     <File Include="Views/Category/Index.cshtml">
-      <publishTime>05/22/2017 22:04:45</publishTime>
+      <publishTime>06/21/2017 15:24:39</publishTime>
     </File>
     <File Include="Views/Dealers/Index.cshtml">
       <publishTime>06/08/2017 08:55:33</publishTime>
     </File>
     <File Include="Views/Goods/Index.cshtml">
-      <publishTime>05/24/2017 19:03:48</publishTime>
+      <publishTime>06/21/2017 19:55:22</publishTime>
     </File>
     <File Include="Views/Home/login.cshtml">
       <publishTime>05/30/2017 12:59:46</publishTime>
     </File>
     <File Include="Views/Home/Management.cshtml">
-      <publishTime>06/14/2017 11:33:36</publishTime>
+      <publishTime>06/22/2017 15:48:20</publishTime>
     </File>
     <File Include="Views/Home/PersonalInfo.cshtml">
       <publishTime>06/08/2017 19:16:38</publishTime>
@@ -508,13 +508,13 @@
       <publishTime>06/07/2017 14:00:57</publishTime>
     </File>
     <File Include="Views/StatisticInfo/DealersStatistic.cshtml">
-      <publishTime>05/30/2017 11:50:42</publishTime>
+      <publishTime>06/22/2017 21:11:50</publishTime>
     </File>
     <File Include="Views/StatisticInfo/Index.cshtml">
-      <publishTime>05/30/2017 11:50:42</publishTime>
+      <publishTime>06/22/2017 21:15:41</publishTime>
     </File>
     <File Include="Views/StatisticInfo/SaleStatistic.cshtml">
-      <publishTime>05/30/2017 11:50:42</publishTime>
+      <publishTime>06/22/2017 21:13:39</publishTime>
     </File>
     <File Include="Views/Storage/Index.cshtml">
       <publishTime>05/22/2017 22:04:45</publishTime>
@@ -532,10 +532,10 @@
       <publishTime>05/30/2017 00:00:46</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>05/19/2017 00:09:29</publishTime>
+      <publishTime>06/21/2017 08:31:34</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/10/2017 19:13:39</publishTime>
+      <publishTime>06/22/2017 21:18:32</publishTime>
     </File>
   </ItemGroup>
 </Project>
