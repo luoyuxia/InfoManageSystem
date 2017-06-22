@@ -154,7 +154,7 @@
             $.get("/Warning/GetWarnings", function (data) {
                 displayWarning(data);
             });
-            var username = "@ViewBag.username";
+            var username = "@Model.Name";
             ws = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '/api/WS?user=' + username);
             ws.onmessage = function (result) {
                 warnings = JSON.parse(result.data);

@@ -67,6 +67,7 @@ namespace InfoManageSystem.WebUI.Controllers
             return RedirectToAction("Index",new { error = true });
         }
 
+        [Authorize]
         public ActionResult Management()
         {
             string userData = UserHelper.GetUserData();

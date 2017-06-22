@@ -2,4 +2,3 @@ E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\Info
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\bin\Release\InfoManageSystem.Util.pdb
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\obj\Release\InfoManageSystem.Util.dll
 E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\obj\Release\InfoManageSystem.Util.pdb
-E:\A_大学学习\课程项目\NETProject\InfoManageSystem\InfoManageSystem\InfoManageSystem.Util\obj\Release\InfoManageSystem.Util.csprojResolveAssemblyReference.cache

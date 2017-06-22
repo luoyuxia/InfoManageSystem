@@ -13,6 +13,7 @@ namespace InfoManageSystem.Domain.Concrete
         EFDbContext context = new EFDbContext();
         public bool SaveGoods(Goods goods)
         {
+
             Goods dbEntry = context.Goods.Find(goods.Id);
             if(dbEntry == null)
             {
